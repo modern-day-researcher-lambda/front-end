@@ -38,7 +38,7 @@ export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
 
   return axios
-    .post("http://localhost:4000/api/login", creds)
+    .post("http://localhost:4000/login", creds)
     .then(res => {
       localStorage.setItem("token", res.data.payload);
       dispatch({ type: LOGIN_SUCCESS });
@@ -53,10 +53,10 @@ export const login = creds => dispatch => {
 };
 
 
-export const getData = () => dispatch => {
+export const getCards = () => dispatch => {
   dispatch({ type: FETCH_CARDS_START });
   axios
-    .get("http://localhost:4000/api/data", {
+    .get("http://localhost:4000/cards", {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
