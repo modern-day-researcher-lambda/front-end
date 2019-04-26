@@ -33,6 +33,7 @@ import {
 
 } from "../actions";
 
+
 const initialState = {
    cards: [
     {
@@ -47,3 +48,53 @@ const initialState = {
         updated: null
     }
 ]}
+
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case LOGIN_START: {
+      return {
+        ...state,
+        loginError: "",
+        isLoggingIn: true
+      };
+    }
+    case LOGIN_SUCCESS: {
+      return {
+        ...state,
+        isLoggingIn: false
+      };
+    }
+    case LOGIN_FAILURE: {
+      return {
+        ...state,
+        loginError: "failed login",
+        isLoggingIn: false
+      };
+    }
+    case FETCH_CARDS_START:
+      return {
+        ...state,
+        error: "",
+        fetchingData: true
+      };
+    case FETCH_CARDS_SUCCESS:
+      console.log(action.payload);
+      return {
+        ...state,
+        error: "",
+        fetchingData: false,
+        cards: action.payload
+      };
+    case FETCH_CARDS_FAILURE:
+      return {
+        ...state,
+        errorStatusCode: action.payload.status
+      };
+    default:
+      return state;
+  }
+};
+
+export default reducer;
+
