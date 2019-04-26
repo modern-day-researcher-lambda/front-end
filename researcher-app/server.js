@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const port = 5000;
+const port = 4000;
 const app = express();
 const data = require("./data");
 const token = "ahuBHejkJJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA07i73Gebhu98";
@@ -19,7 +19,7 @@ function authenticator(req, res, next) {
   }
 }
 
-app.post("/api/login", (req, res) => {
+app.post("/login", (req, res) => {
   const { username, password } = req.body;
   if (username === "user" && password === "password") {
     req.loggedIn = true;
@@ -33,7 +33,7 @@ app.post("/api/login", (req, res) => {
   }
 });
 
-app.get("/api/data", authenticator, (req, res) => {
+app.get("/cards", authenticator, (req, res) => {
   setTimeout(() => {
     res.send(data);
   }, 1000);
