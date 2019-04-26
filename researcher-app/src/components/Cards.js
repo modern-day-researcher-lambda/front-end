@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { getCards } from '../actions/';
+import SingleCard from './SingleCard';
 
 
 const mapStateToProps = state => ({
@@ -19,13 +20,7 @@ class Cards extends React.Component {
         return (
             <ul className='card-list'>
             	{this.props.cards.map(card => (
-    	            <li key={card.id} className={card.complete ? 'card complete' : 'card'} >
-    	            	<p>{card.title}</p>
-                        <p>{card.category}</p>
-                        <p>{card.description}</p>
-                        <p>{card.link}</p>
-                        <p>{card.completed}</p>
-    	            </li>
+    	            <SingleCard key={card.id} {...card} />
             	))}
             </ul>
         );
@@ -35,14 +30,3 @@ class Cards extends React.Component {
 
 export default connect(mapStateToProps, { getCards })(Cards);
 
-/*
-        userid: "",
-        id: 0,
-        title: "",
-        category: "",
-        description: "",
-        link: "",
-        completed: false,
-        created: new Date(),
-        updated: null
-*/
