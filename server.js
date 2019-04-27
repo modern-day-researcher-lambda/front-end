@@ -70,7 +70,7 @@ app.post('/cards', authenticator, (req, res) => {
   res.send(cards);
 });
 
-app.put('/cardss/:id', authenticator, (req, res) => {
+app.put('/cards/:id', authenticator, (req, res) => {
   const { id } = req.params;
 
   const cardIndex = cards.findIndex(f => f.id == id);

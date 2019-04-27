@@ -12,9 +12,9 @@ export const FETCH_CARDS_START = "FETCH_CARDS_START";
 export const FETCH_CARDS_SUCCESS = "FETCH_CARDS_SUCCESS";
 export const FETCH_CARDS_FAILURE = "FETCH_CARDS_FAILURE";
 
-export const ADD_CARDS_START = "ADD_CARDS_START";
-export const ADD_CARDS_SUCCESS = "ADD_CARDS_SUCCESS";
-export const ADD_CARDS_FAILURE = "ADD_CARDS_FAILURE";
+export const ADD_CARD_START = "ADD_CARD_START";
+export const ADD_CARD_SUCCESS = "ADD_CARD_SUCCESS";
+export const ADD_CARD_FAILURE = "ADD_CARD_FAILURE";
 
 export const UPDATE_CARDS_START = "UPDATE_CARDS_START";
 export const UPDATE_CARDS_SUCCESS = "UPDATE_CARDS_SUCCESS";
@@ -76,5 +76,27 @@ export const getCards = () => dispatch => {
         localStorage.removeItem("token");
       }
       dispatch({ type: FETCH_CARDS_FAILURE, payload: err.response });
+    });
+};
+
+export const addCard = (card) => dispatch => {
+  dispatch({ type: ADD_CARD_START });
+  axios
+    .post("http://localhost:4000/cards", card, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: ADD_CARD_SUCCESS,
+        payload: res.data.data
+      });
+    })
+    .catch(err => {
+      console.log(err.response);
+      if (err.response.status === 403) {
+        localStorage.removeItem("token");
+      }
+      dispatch({ type: ADD_CARD_FAILURE, payload: err.response });
     });
 };

@@ -1,31 +1,55 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getCards } from '../actions/';
-import SingleCard from './SingleCard';
+import { addCard } from '../actions/';
+
 
 
 const mapStateToProps = state => ({
-	cards: state.cards
+    cards: state.cards
 });
 
-class Cards extends React.Component {
+class CardForm extends React.Component {
+    state = {
+        newCard: {
+            title: "",
+            category: "",
+            description: "",
+            link: ""
+        }
+    }
 
+    handleChange = e => {
+        this.setState({
+            newCard: {
+                ...this.state.newCard,
+                [e.target.name]: e.target.value
+            }
+        });
+    };
 
-    componentDidMount() {
-        this.props.getCards();
+    handleAddCard = e => {
+        e.preventDefault();
+        this.props.addCard(this.state.newCard);
+
+        this.setState({
+            newCard: {
+                title: "",
+                category: "",
+                description: "",
+                link: ""
+            }
+        })
     }
 
     render() {
         return (
-            <ul className='card-list'>
-            	{this.props.cards.map(card => (
-    	            <SingleCard key={card.id} {...card} />
-            	))}
+            <ul className='card-form'>
+            	
             </ul>
         );
     }
 }
 
 
-export default connect(mapStateToProps, { getCards })(Cards);
+export default connect(mapStateToProps, { addCard })(CardForm);
