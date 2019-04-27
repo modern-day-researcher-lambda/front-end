@@ -31,6 +31,7 @@ class CardForm extends React.Component {
     handleAddCard = e => {
         e.preventDefault();
         this.props.addCard(this.state.newCard);
+        this.props.history.push('/cards')
 
         this.setState({
             newCard: {

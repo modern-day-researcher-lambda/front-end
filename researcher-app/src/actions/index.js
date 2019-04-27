@@ -68,7 +68,7 @@ export const getCards = () => dispatch => {
       console.log(res);
       dispatch({
         type: FETCH_CARDS_SUCCESS,
-        payload: res.data.data
+        payload: res.data
       });
     })
     .catch(err => {
@@ -83,16 +83,15 @@ export const getCards = () => dispatch => {
 export const addCard = (card) => dispatch => {
   dispatch({ type: ADD_CARD_START });
   axios
-    .post("http://localhost:4000/cards", {
+    .post("http://localhost:4000/cards", card, {
       headers: { Authorization: localStorage.getItem("token") }
-    }, card)
+    })
     .then(res => {
       console.log(res);
       dispatch({
         type: ADD_CARD_SUCCESS,
-        payload: res.data.data
+        payload: res.data
       });
-      // history.push('/cards')
     })
     .catch(err => {
       console.log(err.response);

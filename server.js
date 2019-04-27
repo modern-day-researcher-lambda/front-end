@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = 4000;
 const app = express();
-const data = require("./data");
+// const data = require("./data");
 const token = "ahuBHejkJJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA07i73Gebhu98";
 
 let nextId = 2;
@@ -48,7 +48,7 @@ app.post("/login", (req, res) => {
 
 app.get("/cards", authenticator, (req, res) => {
   setTimeout(() => {
-    res.send(data);
+    res.send(cards);
   }, 1000);
 });
 
