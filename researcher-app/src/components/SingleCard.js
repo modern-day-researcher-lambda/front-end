@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 /*
 import { getCards } from '../actions/';
@@ -25,8 +25,9 @@ const SingleCard = (props) => {
 };
 
 
+export default SingleCard;
 
-export default connect(null, {  })(SingleCard);
+// export default connect(null, {  })(SingleCard);
 
 /*
         userid: "",

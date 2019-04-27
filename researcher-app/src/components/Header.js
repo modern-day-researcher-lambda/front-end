@@ -1,8 +1,5 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
-
-import Login from "./Login";
-
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
