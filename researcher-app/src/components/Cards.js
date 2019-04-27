@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { getCards } from '../actions/';
 import SingleCard from './SingleCard';
-import CardForm from './CardForm';
+
 
 
 const mapStateToProps = state => ({
@@ -28,7 +28,6 @@ class Cards extends React.Component {
                 </ul>
             
                 <Link to="/cardform">Add</Link>
-                <Route exact path="/cardform" component={ CardForm } />
             </div>
         );
     }

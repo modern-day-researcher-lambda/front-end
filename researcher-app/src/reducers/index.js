@@ -44,7 +44,6 @@ const initialState = {
    cards: [
     {
         userid: "",
-        id: 0,
         title: "dummy card",
         category: "",
         description: "",
@@ -106,25 +105,25 @@ const reducer = (state = initialState, action) => {
         ...state,
         errorStatusCode: action.payload.status
       };
-    case ADD_CARD_START:
-      console.log('Adding card');
-      return {
-        ...state,
-        error: "",
-        addingCard: true
-      };
-    case ADD_CARD_SUCCESS:
-      console.log(action.payload);
-      return {
-        ...state,
-        addingCard: false,
-        cards: action.payload
-      }
-    case ADD_CARD_FAILURE:
-      return {
-        ...state,
-        error: action.payload.status
-      }
+    // case ADD_CARD_START:
+    //   console.log('Adding card');
+    //   return {
+    //     ...state,
+    //     error: "",
+    //     addingCard: true
+    //   };
+    // case ADD_CARD_SUCCESS:
+    //   console.log(action.payload);
+    //   return {
+    //     ...state,
+    //     addingCard: false,
+    //     cards: action.payload
+    //   }
+    // case ADD_CARD_FAILURE:
+    //   return {
+    //     ...state,
+    //     error: action.payload.status
+    //   }
     default:
       return state;
   }

@@ -53,7 +53,7 @@ app.get("/cards", authenticator, (req, res) => {
 });
 
 app.get('/cards/:id', authenticator, (req, res) => {
-  const card = cards.find(f => f.id == req.params.id);
+  const card = cards.find(c => c.id == req.params.id);
 
   if (card) {
     res.status(200).json(card);

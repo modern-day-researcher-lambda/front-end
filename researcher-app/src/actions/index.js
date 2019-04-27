@@ -1,4 +1,5 @@
 import axios from "axios";
+import history from "../components/history"
 
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -82,15 +83,16 @@ export const getCards = () => dispatch => {
 export const addCard = (card) => dispatch => {
   dispatch({ type: ADD_CARD_START });
   axios
-    .post("http://localhost:4000/cards", card, {
+    .post("http://localhost:4000/cards", {
       headers: { Authorization: localStorage.getItem("token") }
-    })
+    }, card)
     .then(res => {
       console.log(res);
       dispatch({
         type: ADD_CARD_SUCCESS,
         payload: res.data.data
       });
+      // history.push('/cards')
     })
     .catch(err => {
       console.log(err.response);
