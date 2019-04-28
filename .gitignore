@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/researcher-app/node_modules
 /.pnp
 .pnp.js
 
