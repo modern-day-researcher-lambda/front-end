@@ -8,6 +8,10 @@ import {
     FETCH_CARDS_SUCCESS,
     FETCH_CARDS_FAILURE,
 
+    ADD_CARD_START,
+    ADD_CARD_SUCCESS,
+    ADD_CARD_FAILURE,
+
 /*
     REGISTER_START,
     REGISTER_SUCCESS,
@@ -36,19 +40,25 @@ import {
 
 } from "../actions";
 
-
 const initialState = {
    cards: [
     {
         userid: "",
-        id: 0,
         title: "dummy card",
         category: "",
         description: "",
         link: "",
         completed: false,
         created: new Date(),
-        updated: null
+        updated: null,
+
+        isLoggingIn: false,
+        loginError: null,
+        fetchingData: false,
+        errorStatusCode: null,
+        addingCard: false,
+        updatingCard: false,
+        deletingCard: false
     }
 ]}
 
@@ -95,6 +105,25 @@ const reducer = (state = initialState, action) => {
         ...state,
         errorStatusCode: action.payload.status
       };
+    case ADD_CARD_START:
+      console.log('Adding card');
+      return {
+        ...state,
+        error: "",
+        addingCard: true
+      };
+    case ADD_CARD_SUCCESS:
+      console.log(action.payload);
+      return {
+        ...state,
+        addingCard: false,
+        cards: action.payload
+      }
+    case ADD_CARD_FAILURE:
+      return {
+        ...state,
+        error: action.payload.status
+      }
     default:
       return state;
   }

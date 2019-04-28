@@ -1,14 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
-/*
-import { getCards } from '../actions/';
-
-
-const mapStateToProps = state => ({
-	cards: state.cards
-});
-*/
 
 
 const SingleCard = (props) => {
@@ -25,17 +15,4 @@ const SingleCard = (props) => {
 };
 
 
-
-export default connect(null, {  })(SingleCard);
-
-/*
-        userid: "",
-        id: 0,
-        title: "",
-        category: "",
-        description: "",
-        link: "",
-        completed: false,
-        created: new Date(),
-        updated: null
-*/
+export default SingleCard;

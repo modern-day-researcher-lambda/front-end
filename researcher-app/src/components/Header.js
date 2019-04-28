@@ -1,13 +1,11 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
-
-import Login from "./Login";
-
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
       <div className="Header">
         <Link to="/login">Login</Link>
+        <Link to="/cards">Cards</Link>
       </div>
   );
 }
