@@ -40,7 +40,7 @@ const initialState = {
   addingCard: false,
   updatingCard: false,
   deletingCard: false,
-  errorStatusCode: null
+  errorMessage: null
 };
 
 
@@ -53,8 +53,8 @@ const reducer = (state = initialState, action) => {
         isLoggingIn: false,
         registerError: '',
         isRegistering: false,
-        errorStatusCode: '',
-        fetchingData: false,
+        errorMessage: '',
+        fetchingCards: false,
         addingCard: false,
         updatingCard: false,
         deletingCard: false
@@ -108,46 +108,49 @@ const reducer = (state = initialState, action) => {
         console.log('fetching cards');
       return {
         ...state,
-        error: "",
-        fetchingData: true
+        errorMessage: "",
+        fetchingCards: true
       };
     case FETCH_CARDS_SUCCESS:
-      console.log(action.payload);
+      console.log('reducer fetch action payload:', action.payload);
       return {
         ...state,
-        error: "",
-        fetchingData: false,
+        errorMessage: "",
+        fetchingCards: false,
         cards: action.payload
       };
     case FETCH_CARDS_FAILURE:
       return {
         ...state,
-        errorStatusCode: action.payload.status
+        fetchingCards: false,
+        errorMessage: action.payload
       };
 
     case ADD_CARD_START:
-      console.log('Adding card');
       return {
         ...state,
-        error: "",
+        errorMessage: "",
         addingCard: true
       };
     case ADD_CARD_SUCCESS:
-      console.log(action.payload);
+      console.log('reducer ADD_CARD_SUCCESS payload:', action.payload);
       return {
         ...state,
+        errorMessage: "",
         addingCard: false,
         cards: action.payload
       }
     case ADD_CARD_FAILURE:
+      console.log('reducer ADD_CARD_FAILURE payload:', action.payload);
       return {
         ...state,
-        error: action.payload.status
+        addingCard: false,
+        errorMessage: action.payload
       }
+
     default:
       return state;
   }
 };
 
 export default reducer;
-

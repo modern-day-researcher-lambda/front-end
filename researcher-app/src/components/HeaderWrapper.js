@@ -20,6 +20,10 @@ const HeaderWrapper = styled.div`
 	align-items: center;
 	justify-content: space-around;
 
+	p {
+		font-size: 1.6rem;
+	}
+
 	a {
 		height: 40px;
 		width: 100px;
