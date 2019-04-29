@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { register } from "../actions";
+import RegisterWrapper from './RegisterWrapper';
+
 
 class Register extends React.Component {
   state = {
@@ -12,7 +14,6 @@ class Register extends React.Component {
   };
 
   handleChange = e => {
-    console.log(this.props.state);
     this.setState({
       credentials: {
         ...this.state.credentials,
@@ -23,30 +24,40 @@ class Register extends React.Component {
 
   handleRegister = e => {
     e.preventDefault();
-    this.props
-      .register(this.state.credentials)
-      .then(() => this.props.history.push("/cards"));
+    // attempt to register (handled inside register method)
+    // success -> goto /login
+    // failure -> stay here
+    this.props.register(this.state.credentials, this.props.history);
   };
 
   render() {
     return (
-      <div>
+      <RegisterWrapper>
   
+        {this.props.registerError && <p>{this.props.registerError}</p>}
 
-        {this.props.registerError && <p>Registration error, try again</p>}
         <form onSubmit={this.handleRegister}>
-          <input
-            type="text"
-            name="username"
-            value={this.state.credentials.username}
-            onChange={this.handleChange}
-          />
-          <input
-            type="password"
-            name="password"
-            value={this.state.credentials.password}
-            onChange={this.handleChange}
-          />
+
+          <div>
+            <label name='username'>Name:</label>
+            <input
+              type="text"
+              name="username"
+              value={this.state.credentials.username}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div>
+            <label name='password'>Password:</label>
+            <input
+              type="password"
+              name="password"
+              value={this.state.credentials.password}
+              onChange={this.handleChange}
+            />
+          </div>
+
           <button>
             {this.props.isRegistering ? (
               <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
@@ -55,7 +66,8 @@ class Register extends React.Component {
             )}
           </button>
         </form>
-      </div>
+
+      </RegisterWrapper>
     );
   }
 }

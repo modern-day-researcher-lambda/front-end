@@ -60,23 +60,19 @@ export const login = creds => dispatch => {
 };
 
 
-export const register = creds => dispatch => {
+export const register = (creds, history) => dispatch => {
   dispatch({ type: REGISTER_START });
 
-  console.log(creds);
   return axios
     .post("http://localhost:5000/users/register", creds)
     .then(res => {
-      console.log(res);
       localStorage.setItem("jwt", res.data.token);
       dispatch({ type: REGISTER_SUCCESS });
+      history.push("/login")
     })
     .catch(err => {
-      console.log("register err: ", err);
-      if (err.response && err.response.status === 401) {
-        localStorage.removeItem("jwt");
-      }
-      dispatch({ type: REGISTER_FAILURE, payload: err.response });
+      console.log('actions register err =', err)
+      dispatch({ type: REGISTER_FAILURE, payload: err.response.data.message });
     });
 };
 

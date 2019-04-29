@@ -13,6 +13,7 @@ const WelcomeWrapper = styled.div`
 
 	h1 {
 		font-size: 6rem;
+		margin: 30px 0;
 	}
 
 	p {

@@ -104,7 +104,7 @@ const reducer = (state = initialState, action) => {
     case REGISTER_FAILURE: {
       return {
         ...state,
-        registerError: action.payload.data.message,
+        registerError: action.payload,
         isRegistering: false
       };
     }
