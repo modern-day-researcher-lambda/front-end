@@ -1,5 +1,5 @@
 import axios from "axios";
-import history from "../components/history"
+//import history from "../components/history"
 
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -42,26 +42,50 @@ export const ADD_CATEGORY_FAILURE = "ADD_CATEGORY_FAILURE";
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
 
+  console.log(creds);
   return axios
-    .post("http://localhost:4000/login", creds)
+    .post("http://localhost:5000/users/login", creds)
     .then(res => {
-      localStorage.setItem("token", res.data.payload);
+      console.log(res);
+      localStorage.setItem("jwt", res.data.token);
       dispatch({ type: LOGIN_SUCCESS });
     })
     .catch(err => {
       console.log("login err: ", err);
-      if (err.response && err.response.status === 403) {
+      if (err.response && err.response.status === 401) {
         localStorage.removeItem("token");
       }
-      dispatch({ type: LOGIN_FAILURE });
+      dispatch({ type: LOGIN_FAILURE, payload: err.response });
     });
 };
+
+
+export const register = creds => dispatch => {
+  dispatch({ type: REGISTER_START });
+
+  console.log(creds);
+  return axios
+    .post("http://localhost:5000/users/register", creds)
+    .then(res => {
+      console.log(res);
+      localStorage.setItem("jwt", res.data.token);
+      dispatch({ type: REGISTER_SUCCESS });
+    })
+    .catch(err => {
+      console.log("register err: ", err);
+      if (err.response && err.response.status === 401) {
+        localStorage.removeItem("jwt");
+      }
+      dispatch({ type: REGISTER_FAILURE, payload: err.response });
+    });
+};
+
 
 
 export const getCards = () => dispatch => {
   dispatch({ type: FETCH_CARDS_START });
   axios
-    .get("http://localhost:4000/cards", {
+    .get("http://localhost:5000/cards/users/1", {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
@@ -73,17 +97,18 @@ export const getCards = () => dispatch => {
     })
     .catch(err => {
       console.log(err.response);
-      if (err.response.status === 403) {
+      if (err.response.status === 401) {
         localStorage.removeItem("token");
       }
       dispatch({ type: FETCH_CARDS_FAILURE, payload: err.response });
     });
 };
 
+
 export const addCard = (card) => dispatch => {
   dispatch({ type: ADD_CARD_START });
   axios
-    .post("http://localhost:4000/cards", card, {
+    .post("http://localhost:5000/cards", card, {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
@@ -95,7 +120,7 @@ export const addCard = (card) => dispatch => {
     })
     .catch(err => {
       console.log(err.response);
-      if (err.response.status === 403) {
+      if (err.response.status === 401) {
         localStorage.removeItem("token");
       }
       dispatch({ type: ADD_CARD_FAILURE, payload: err.response });

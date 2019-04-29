@@ -1,13 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import HeaderWrapper from './HeaderWrapper';
+import HeaderSpacer from './HeaderSpacer';
+
+
 function Header() {
-  return (
-      <div className="Header">
-        <Link to="/login">Login</Link>
-        <Link to="/cards">Cards</Link>
-      </div>
-  );
+	return (
+		<>
+			<HeaderWrapper height='80px'>
+				<Link to="/login">Login</Link>
+				<Link to="/register">Register</Link>
+			</HeaderWrapper>
+			<HeaderSpacer height='80px' />
+		</>
+	);
 }
 
 

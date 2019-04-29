@@ -4,6 +4,10 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
 
+    REGISTER_START,
+    REGISTER_SUCCESS,
+    REGISTER_FAILURE,
+
     FETCH_CARDS_START,
     FETCH_CARDS_SUCCESS,
     FETCH_CARDS_FAILURE,
@@ -13,10 +17,6 @@ import {
     ADD_CARD_FAILURE,
 
 /*
-    REGISTER_START,
-    REGISTER_SUCCESS,
-    REGISTER_FAILURE,
-
     UPDATE_CARDS_START,
     UPDATE_CARDS_SUCCESS,
     UPDATE_CARDS_FAILURE,
@@ -41,26 +41,28 @@ import {
 } from "../actions";
 
 const initialState = {
-   cards: [
+  cards: [
     {
         userid: "",
-        title: "dummy card",
-        category: "",
-        description: "",
-        link: "",
+        title: "Your First Card",
+        category: "General",
+        description: "This is where you will add a description of your resource",
+        link: "www.google.com",
         completed: false,
         created: new Date(),
-        updated: null,
-
-        isLoggingIn: false,
-        loginError: null,
-        fetchingData: false,
-        errorStatusCode: null,
-        addingCard: false,
-        updatingCard: false,
-        deletingCard: false
+        updated: null
     }
-]}
+  ],
+  isLoggingIn: false,
+  loginError: null,
+  isRegistering: false,
+  registerError: null,
+  fetchingData: false,
+  addingCard: false,
+  updatingCard: false,
+  deletingCard: false,
+  errorStatusCode: null
+};
 
 
 const reducer = (state = initialState, action) => {
@@ -81,10 +83,32 @@ const reducer = (state = initialState, action) => {
     case LOGIN_FAILURE: {
       return {
         ...state,
-        loginError: "failed login",
+        loginError: action.payload.data.message,
         isLoggingIn: false
       };
     }
+
+    case REGISTER_START: {
+      return {
+        ...state,
+        registerError: "",
+        isRegistering: true
+      };
+    }
+    case REGISTER_SUCCESS: {
+      return {
+        ...state,
+        isRegistering: false
+      };
+    }
+    case REGISTER_FAILURE: {
+      return {
+        ...state,
+        registerError: action.payload.data.message,
+        isRegistering: false
+      };
+    }
+    
     case FETCH_CARDS_START:
         console.log('fetching cards');
       return {
@@ -105,6 +129,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         errorStatusCode: action.payload.status
       };
+
     case ADD_CARD_START:
       console.log('Adding card');
       return {
