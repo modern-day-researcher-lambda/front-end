@@ -1,4 +1,5 @@
 import {
+    RESET_ERROR_MESSAGES,
 
     LOGIN_START,
     LOGIN_SUCCESS,
@@ -24,35 +25,13 @@ import {
     DELETE_CARD_START,
     DELETE_CARD_SUCCESS,
     DELETE_CARD_FAILURE,
-
-    TOGGLE_CARD_START,
-    TOGGLE_CARD_SUCCESS,
-    TOGGLE_CARD_FAILURE,
-
-    FETCH_CATEGORY_START,
-    FETCH_CATEGORY_SUCCESS,
-    FETCH_CATEGORY_FAILURE,
-    
-    ADD_CATEGORY_START,
-    ADD_CATEGORY_SUCCESS,
-    ADD_CATEGORY_FAILURE
 */
 
 } from "../actions";
 
 const initialState = {
-  cards: [
-    {
-        userid: "",
-        title: "Your First Card",
-        category: "General",
-        description: "This is where you will add a description of your resource",
-        link: "www.google.com",
-        completed: false,
-        created: new Date(),
-        updated: null
-    }
-  ],
+  cards: [],
+  user: '',
   isLoggingIn: false,
   loginError: null,
   isRegistering: false,
@@ -67,6 +46,21 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case RESET_ERROR_MESSAGES: {
+      return {
+        ...state,
+        loginError: '',
+        isLoggingIn: false,
+        registerError: '',
+        isRegistering: false,
+        errorStatusCode: '',
+        fetchingData: false,
+        addingCard: false,
+        updatingCard: false,
+        deletingCard: false
+      };
+    }
+
     case LOGIN_START: {
       return {
         ...state,
@@ -77,13 +71,14 @@ const reducer = (state = initialState, action) => {
     case LOGIN_SUCCESS: {
       return {
         ...state,
+        user: action.payload,
         isLoggingIn: false
       };
     }
     case LOGIN_FAILURE: {
       return {
         ...state,
-        loginError: action.payload.data.message,
+        loginError: action.payload,
         isLoggingIn: false
       };
     }

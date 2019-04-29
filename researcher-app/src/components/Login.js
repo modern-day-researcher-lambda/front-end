@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { login } from "../actions";
+import LoginWrapper from './LoginWrapper';
+
 
 class Login extends React.Component {
   state = {
@@ -22,28 +24,40 @@ class Login extends React.Component {
 
   handleLogin = e => {
     e.preventDefault();
-    this.props
-      .login(this.state.credentials)
-      .then(() => this.props.history.push("/cards"));
+    // attempt to login (handled inside login method)
+    // success -> goto /cards
+    // failure -> stay here
+    this.props.login(this.state.credentials, this.props.history);
   };
 
   render() {
     return (
-      <div>
-        {this.props.loginError && <p>Error on login, try again</p>}
+      <LoginWrapper>
+
+        {this.props.loginError && <p>{this.props.loginError}</p>}
+
         <form onSubmit={this.handleLogin}>
-          <input
-            type="text"
-            name="username"
-            value={this.state.credentials.username}
-            onChange={this.handleChange}
-          />
-          <input
-            type="password"
-            name="password"
-            value={this.state.credentials.password}
-            onChange={this.handleChange}
-          />
+
+          <div>
+            <label name='username'>Name:</label>
+            <input
+              type="text"
+              name="username"
+              value={this.state.credentials.username}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div>
+            <label name='password'>Password:</label>
+            <input
+              type="password"
+              name="password"
+              value={this.state.credentials.password}
+              onChange={this.handleChange}
+            />
+          </div>
+
           <button>
             {this.props.isLoggingIn ? (
               <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
@@ -51,8 +65,10 @@ class Login extends React.Component {
               "Log in"
             )}
           </button>
+
         </form>
-      </div>
+        
+      </LoginWrapper>
     );
   }
 }

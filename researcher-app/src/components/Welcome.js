@@ -1,9 +1,14 @@
 import React from 'react';
+import { connect } from "react-redux";
 
+import { resetErrors } from "../actions";
 import WelcomeWrapper from './WelcomeWrapper';
 
 
 const Welcome = (props) => {
+
+	// reset any pending error messages
+	props.resetErrors();
 
     return (
 	    <WelcomeWrapper>
@@ -15,4 +20,7 @@ const Welcome = (props) => {
 };
 
 
-export default Welcome;
+export default connect(
+  null,
+  { resetErrors }
+)(Welcome);

@@ -37,25 +37,31 @@ export const ADD_CATEGORY_START = "ADD_CATEGORY_START";
 export const ADD_CATEGORY_SUCCESS = "ADD_CATEGORY_SUCCESS";
 export const ADD_CATEGORY_FAILURE = "ADD_CATEGORY_FAILURE";
 
+export const RESET_ERROR_MESSAGES = 'RESET_ERROR_MESSAGES';
 
 
-export const login = creds => dispatch => {
+
+export const resetErrors = () => dispatch => {
+  dispatch({ type: RESET_ERROR_MESSAGES});
+}
+
+
+export const login = (creds, history) => dispatch => {
   dispatch({ type: LOGIN_START });
 
-  console.log(creds);
   return axios
     .post("http://localhost:5000/users/login", creds)
     .then(res => {
-      console.log(res);
-      localStorage.setItem("jwt", res.data.token);
-      dispatch({ type: LOGIN_SUCCESS });
+      localStorage.setItem("token", res.data.token);
+      dispatch({ type: LOGIN_SUCCESS, payload: creds.username });
+      history.push('/cards');
     })
     .catch(err => {
       console.log("login err: ", err);
       if (err.response && err.response.status === 401) {
         localStorage.removeItem("token");
       }
-      dispatch({ type: LOGIN_FAILURE, payload: err.response });
+      dispatch({ type: LOGIN_FAILURE, payload: err.response.data.message });
     });
 };
 
@@ -66,12 +72,11 @@ export const register = (creds, history) => dispatch => {
   return axios
     .post("http://localhost:5000/users/register", creds)
     .then(res => {
-      localStorage.setItem("jwt", res.data.token);
+      localStorage.setItem("token", res.data.token);
       dispatch({ type: REGISTER_SUCCESS });
       history.push("/login")
     })
     .catch(err => {
-      console.log('actions register err =', err)
       dispatch({ type: REGISTER_FAILURE, payload: err.response.data.message });
     });
 };
@@ -81,7 +86,7 @@ export const register = (creds, history) => dispatch => {
 export const getCards = () => dispatch => {
   dispatch({ type: FETCH_CARDS_START });
   axios
-    .get("http://localhost:5000/cards/users/1", {
+    .get("http://localhost:5000/cards/1", {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
@@ -96,7 +101,7 @@ export const getCards = () => dispatch => {
       if (err.response.status === 401) {
         localStorage.removeItem("token");
       }
-      dispatch({ type: FETCH_CARDS_FAILURE, payload: err.response });
+      dispatch({ type: FETCH_CARDS_FAILURE, payload: err.response.data.message });
     });
 };
 

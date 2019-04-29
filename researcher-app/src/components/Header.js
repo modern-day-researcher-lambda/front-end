@@ -9,7 +9,8 @@ function Header() {
 	return (
 		<>
 			<HeaderWrapper height='80px'>
-				<Link to="/cards">Home</Link>
+				<Link to="/cards">Cards</Link>
+				<Link to="CardForm">Add Card</Link>
 				<Link to="/login">Login</Link>
 				<Link to="/register">Register</Link>
 			</HeaderWrapper>

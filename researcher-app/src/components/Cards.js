@@ -11,8 +11,8 @@ const mapStateToProps = state => ({
 	cards: state.cards
 });
 
-class Cards extends React.Component {
 
+class Cards extends React.Component {
 
     componentDidMount() {
         this.props.getCards();
@@ -27,7 +27,6 @@ class Cards extends React.Component {
                     ))}
                 </ul>
             
-                <Link to="/cardform">Add</Link>
             </div>
         );
     }
