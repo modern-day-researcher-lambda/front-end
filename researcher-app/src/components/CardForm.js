@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addCard } from '../actions/';
+import { stat } from 'fs';
 
 
 
@@ -18,7 +19,9 @@ class CardForm extends React.Component {
             title: "",
             category: "",
             description: "",
-            link: ""
+            link: "",
+            user_id: this.props.user,
+            created: new Date()
         }
     };
 
@@ -39,15 +42,6 @@ class CardForm extends React.Component {
         this.props.addCard(this.state.newCard, this.props.user);
         // note: need to add renderprops to the component in order to use this:
         //this.props.history.push('/cards')
-
-        this.setState({
-            newCard: {
-                title: "",
-                category: "",
-                description: "",
-                link: ""
-            }
-        });
     }
 
 
