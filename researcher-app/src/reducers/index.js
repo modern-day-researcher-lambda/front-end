@@ -1,8 +1,13 @@
 import {
+    RESET_ERROR_MESSAGES,
 
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
+
+    REGISTER_START,
+    REGISTER_SUCCESS,
+    REGISTER_FAILURE,
 
     FETCH_CARDS_START,
     FETCH_CARDS_SUCCESS,
@@ -13,10 +18,6 @@ import {
     ADD_CARD_FAILURE,
 
 /*
-    REGISTER_START,
-    REGISTER_SUCCESS,
-    REGISTER_FAILURE,
-
     UPDATE_CARDS_START,
     UPDATE_CARDS_SUCCESS,
     UPDATE_CARDS_FAILURE,
@@ -24,47 +25,42 @@ import {
     DELETE_CARD_START,
     DELETE_CARD_SUCCESS,
     DELETE_CARD_FAILURE,
-
-    TOGGLE_CARD_START,
-    TOGGLE_CARD_SUCCESS,
-    TOGGLE_CARD_FAILURE,
-
-    FETCH_CATEGORY_START,
-    FETCH_CATEGORY_SUCCESS,
-    FETCH_CATEGORY_FAILURE,
-    
-    ADD_CATEGORY_START,
-    ADD_CATEGORY_SUCCESS,
-    ADD_CATEGORY_FAILURE
 */
 
 } from "../actions";
 
 const initialState = {
-   cards: [
-    {
-        userid: "",
-        title: "dummy card",
-        category: "",
-        description: "",
-        link: "",
-        completed: false,
-        created: new Date(),
-        updated: null,
-
-        isLoggingIn: false,
-        loginError: null,
-        fetchingData: false,
-        errorStatusCode: null,
-        addingCard: false,
-        updatingCard: false,
-        deletingCard: false
-    }
-]}
+  cards: [],
+  user: '',
+  isLoggingIn: false,
+  loginError: null,
+  isRegistering: false,
+  registerError: null,
+  fetchingData: false,
+  addingCard: false,
+  updatingCard: false,
+  deletingCard: false,
+  errorMessage: null
+};
 
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case RESET_ERROR_MESSAGES: {
+      return {
+        ...state,
+        loginError: '',
+        isLoggingIn: false,
+        registerError: '',
+        isRegistering: false,
+        errorMessage: '',
+        fetchingCards: false,
+        addingCard: false,
+        updatingCard: false,
+        deletingCard: false
+      };
+    }
+
     case LOGIN_START: {
       return {
         ...state,
@@ -75,59 +71,86 @@ const reducer = (state = initialState, action) => {
     case LOGIN_SUCCESS: {
       return {
         ...state,
+        user: action.payload,
         isLoggingIn: false
       };
     }
     case LOGIN_FAILURE: {
       return {
         ...state,
-        loginError: "failed login",
+        loginError: action.payload,
         isLoggingIn: false
       };
     }
+
+    case REGISTER_START: {
+      return {
+        ...state,
+        registerError: "",
+        isRegistering: true
+      };
+    }
+    case REGISTER_SUCCESS: {
+      return {
+        ...state,
+        isRegistering: false
+      };
+    }
+    case REGISTER_FAILURE: {
+      return {
+        ...state,
+        registerError: action.payload,
+        isRegistering: false
+      };
+    }
+    
     case FETCH_CARDS_START:
         console.log('fetching cards');
       return {
         ...state,
-        error: "",
-        fetchingData: true
+        errorMessage: "",
+        fetchingCards: true
       };
     case FETCH_CARDS_SUCCESS:
-      console.log(action.payload);
+      console.log('reducer fetch action payload:', action.payload);
       return {
         ...state,
-        error: "",
-        fetchingData: false,
+        errorMessage: "",
+        fetchingCards: false,
         cards: action.payload
       };
     case FETCH_CARDS_FAILURE:
       return {
         ...state,
-        errorStatusCode: action.payload.status
+        fetchingCards: false,
+        errorMessage: action.payload
       };
+
     case ADD_CARD_START:
-      console.log('Adding card');
       return {
         ...state,
-        error: "",
+        errorMessage: "",
         addingCard: true
       };
     case ADD_CARD_SUCCESS:
-      console.log(action.payload);
+      console.log('reducer ADD_CARD_SUCCESS payload:', action.payload);
       return {
         ...state,
+        errorMessage: "",
         addingCard: false,
         cards: action.payload
       }
     case ADD_CARD_FAILURE:
+      console.log('reducer ADD_CARD_FAILURE payload:', action.payload);
       return {
         ...state,
-        error: action.payload.status
+        addingCard: false,
+        errorMessage: action.payload
       }
+
     default:
       return state;
   }
 };
 
 export default reducer;
-

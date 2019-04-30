@@ -1,5 +1,9 @@
+import styled from "styled-components";
 
-.App {
+// App wrapper styles
+
+const AppWrapper = styled.div`
+
   margin: 20px auto;
   width: 100%;
   max-width: 800px;
@@ -8,11 +12,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-}
 
-.App h1 {
-  font-size: 6rem;
-  font-weight: bold;
-  margin: 20px;
-}
+`;
 
+
+export default AppWrapper;

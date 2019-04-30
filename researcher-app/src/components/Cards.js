@@ -1,21 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { getCards } from '../actions/';
 import SingleCard from './SingleCard';
 
 
-
 const mapStateToProps = state => ({
-	cards: state.cards
+	cards: state.cards,
+    user: state.user
 });
+
 
 class Cards extends React.Component {
 
-
     componentDidMount() {
-        this.props.getCards();
+        this.props.getCards(this.props.user);
     }
 
     render() {
@@ -23,11 +22,10 @@ class Cards extends React.Component {
             <div>
                 <ul className='card-list'>
                     {this.props.cards.map(card => (
-                        <SingleCard key={card.id} {...card} />
+                        <SingleCard key={card.id} card={card} />
                     ))}
                 </ul>
             
-                <Link to="/cardform">Add</Link>
             </div>
         );
     }
@@ -35,4 +33,3 @@ class Cards extends React.Component {
 
 
 export default connect(mapStateToProps, { getCards })(Cards);
-

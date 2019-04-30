@@ -1,25 +1,29 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import AppWrapper from "./AppWrapper";
 import Header from "./components/Header";
+import Welcome from "./components/Welcome";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import PrivateRoute from "./components/PrivateRoute";
 import Cards from './components/Cards';
 import CardForm from './components/CardForm';
-import history from './components/history'
-
-import './App.css';
+//import history from './components/history'
 
 
 function App() {
   return (
-    <Router history = { history }>
-      <div className="App">
-        <Route path="/" component={Header} />
-        <Route exact path="/login" component={Login} />
-        <PrivateRoute exact path="/cards" component={Cards} />
-        <Route exact path="/cardform" component={ CardForm } />
-      </div>
+    <Router>
+      {/* <Router history = { history }> */}
+      <AppWrapper>
+        <Route path="/" component={ Header } />
+        <Route path="/welcome" component={ Welcome } />
+        <Route path="/login" component={ Login } />
+        <Route path="/register" component={ Register } />
+        <PrivateRoute exact path="/cards" component={ Cards } />
+        <PrivateRoute exact path="/cardform" component={ CardForm } />
+      </AppWrapper>
     </Router>
   );
 }
