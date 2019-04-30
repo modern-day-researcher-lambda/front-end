@@ -6,7 +6,7 @@ import { addCard } from '../actions/';
 
 
 const mapStateToProps = state => ({
-    user: state.user
+    user_id: state.user_id
 });
 
 
@@ -18,7 +18,11 @@ class CardForm extends React.Component {
             title: "",
             category: "",
             description: "",
-            link: ""
+            link: "",
+            user_id: this.props.user_id,
+            created: new Date(),
+            completed: false,
+            updated: null
         }
     };
 
@@ -35,19 +39,10 @@ class CardForm extends React.Component {
 
     handleAddCard = e => {
         e.preventDefault();
-        console.log('about to call addCard with:', this.state.newCard, ' user:', this.props.user);
-        this.props.addCard(this.state.newCard, this.props.user);
-        // note: need to add renderprops to the component in order to use this:
+        console.log('about to call addCard with:', this.state.newCard, ' user_id:', this.props.user_id);
+        this.props.addCard(this.state.newCard, this.props.user_id);
         //this.props.history.push('/cards')
 
-        this.setState({
-            newCard: {
-                title: "",
-                category: "",
-                description: "",
-                link: ""
-            }
-        });
     }
 
 

@@ -52,8 +52,10 @@ export const login = (creds, history) => dispatch => {
   return axios
     .post("http://localhost:5000/users/login", creds)
     .then(res => {
+      console.log('results from axios login post:');
+      console.log(res);
       localStorage.setItem("token", res.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: creds.username });
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.user[0] });
       history.push('/cards');
     })
     .catch(err => {
@@ -83,10 +85,10 @@ export const register = (creds, history) => dispatch => {
 
 
 
-export const getCards = (user) => dispatch => {
+export const getCards = (user_id) => dispatch => {
   dispatch({ type: FETCH_CARDS_START });
   axios
-    .get(`http://localhost:5000/cards/users/${user}`, {
+    .get(`http://localhost:5000/cards/users/${user_id}`, {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
@@ -98,21 +100,19 @@ export const getCards = (user) => dispatch => {
     })
     .catch(err => {
       console.log('action getCards err.response:', err.response);
-      /*
       if (err.response.status === 401) {
         localStorage.removeItem("token");
       }
-      */
       dispatch({ type: FETCH_CARDS_FAILURE, payload: err.response.data.message });
     });
 };
 
 
-export const addCard = (card, user) => dispatch => {
+export const addCard = (card, user_id) => dispatch => {
   console.log('entering addCard');
   dispatch({ type: ADD_CARD_START });
   axios
-    .post(`http://localhost:5000/cards/users/${user}`, card, {
+    .post('http://localhost:5000/cards/users/', card, {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
@@ -124,11 +124,36 @@ export const addCard = (card, user) => dispatch => {
     })
     .catch(err => {
       console.log('action addCard err:', err);
-      /*
       if (err.response.status === 401) {
         localStorage.removeItem("token");
       }
-      */
       dispatch({ type: ADD_CARD_FAILURE, payload: err });
     });
 };
+
+
+export const deleteCard = card_id => dispatch => {
+  dispatch({
+    type: DELETE_CARD_START
+  })
+  axios
+     .delete(`http://localhost:5000/cards/${card_id}`, {
+        headers: { Authorization: localStorage.getItem("token") }
+    })
+     .then(res => {
+      console.log("Card deleted");
+      console.log(res);
+      dispatch({
+        type: DELETE_CARD_SUCCESS,
+        payload: card_id
+      })
+    })
+    .catch(err => {
+      dispatch({
+        type: DELETE_CARD_FAILURE,
+        payload: err
+      })
+    });
+};
+
+

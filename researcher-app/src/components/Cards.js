@@ -7,14 +7,14 @@ import SingleCard from './SingleCard';
 
 const mapStateToProps = state => ({
 	cards: state.cards,
-    user: state.user
+    user_id: state.user_id
 });
 
 
 class Cards extends React.Component {
 
     componentDidMount() {
-        this.props.getCards(this.props.user);
+       if (this.props.user_id) this.props.getCards(this.props.user_id);
     }
 
     render() {
