@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addCard } from '../actions/';
-import { stat } from 'fs';
+import { addCard, getCards } from '../actions/';
+// import { stat } from 'fs';
 
 
 
@@ -40,8 +40,7 @@ class CardForm extends React.Component {
         e.preventDefault();
         console.log('about to call addCard with:', this.state.newCard, ' user:', this.props.user);
         this.props.addCard(this.state.newCard, this.props.user);
-        // note: need to add renderprops to the component in order to use this:
-        //this.props.history.push('/cards')
+        this.props.getCards(this.props.user)
     }
 
 
@@ -81,4 +80,4 @@ class CardForm extends React.Component {
 }
 
 
-export default connect(mapStateToProps, { addCard })(CardForm);
+export default connect(mapStateToProps, { addCard, getCards })(CardForm);

@@ -9,13 +9,11 @@ import Register from "./components/Register";
 import PrivateRoute from "./components/PrivateRoute";
 import Cards from './components/Cards';
 import CardForm from './components/CardForm';
-//import history from './components/history'
 
 
 function App() {
   return (
     <Router>
-      {/* <Router history = { history }> */}
       <AppWrapper>
         <Route path="/" component={ Header } />
         <Route path="/welcome" component={ Welcome } />
