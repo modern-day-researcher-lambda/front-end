@@ -1,25 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addCard, getCards } from '../actions/';
-// import { stat } from 'fs';
+import { updateCard } from '../actions/';
 
 
 
 const mapStateToProps = state => ({
-    user_id: state.user_id
+    id: state.id,
+    cards: state.cards
 });
 
 
 
-class CardForm extends React.Component {
+class UpdateCardForm extends React.Component {
 
     state = {
         newCard: {
-            title: "",
-            category: "",
-            description: "",
-            link: "",
+            title: this.props.title,
+            category: this.props.category,
+            description: this.props.description,
+            link: this.props.link,
             user_id: this.props.user_id,
             created: new Date()
         }
@@ -36,18 +36,18 @@ class CardForm extends React.Component {
     };
 
 
-    handleAddCard = e => {
+    handleUpdateCard = (e) => {
         e.preventDefault();
-        console.log('about to call addCard with:', this.state.newCard, ' user:', this.props.user);
-        this.props.addCard(this.state.newCard, this.props.user_id);
-        this.props.getCards(this.props.user)
-    }
+    
+        const id = this.props.match.params.id;
+        this.props.updateCard(id);
+      }
 
 
     render() {
         return (
             <div className='card-form'>
-                <form onSubmit={this.handleAddCard}>
+                <form onSubmit={this.handleUpdateCard}>
                 <input
                     onChange={this.handleChange}
                     placeholder="Title"
@@ -72,7 +72,7 @@ class CardForm extends React.Component {
                     value={this.state.link}
                     name="link"
                 />
-                <button type="submit">Add</button>
+                <button type="submit">Update</button>
                 </form>
             </div>
         );
@@ -80,4 +80,4 @@ class CardForm extends React.Component {
 }
 
 
-export default connect(mapStateToProps, { addCard, getCards })(CardForm);
+export default connect(mapStateToProps, { updateCard })(UpdateCardForm);

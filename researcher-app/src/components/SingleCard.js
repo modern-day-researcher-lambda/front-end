@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { deleteCard } from '../actions';
 import SingleCardWrapper from './SingleCardWrapper';
@@ -24,6 +25,7 @@ const SingleCard = (props) => {
             <p>Complete? {props.card.completed}</p>
             <form>
             	<button onClick={handleDeleteCard}>Delete</button>
+              <Link to={`cards/${props.card.id}`}>Update</Link>
             </form>
 
 	    </SingleCardWrapper>
