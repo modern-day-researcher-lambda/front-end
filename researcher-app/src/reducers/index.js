@@ -17,11 +17,10 @@ import {
     ADD_CARD_SUCCESS,
     ADD_CARD_FAILURE,
 
-/*
-    UPDATE_CARDS_START,
-    UPDATE_CARDS_SUCCESS,
-    UPDATE_CARDS_FAILURE,
-*/
+    UPDATE_CARD_START,
+    UPDATE_CARD_SUCCESS,
+    UPDATE_CARD_FAILURE,
+
     DELETE_CARD_START,
     DELETE_CARD_SUCCESS,
     DELETE_CARD_FAILURE,
@@ -170,6 +169,27 @@ const reducer = (state = initialState, action) => {
         deletingCard: false,
         errorMessage: action.payload
       }
+      case UPDATE_CARD_START:
+      return {
+        ...state,
+        errorMessage: "",
+        updatingCard: true
+      };
+    case UPDATE_CARD_SUCCESS:
+      console.log('reducer UPDATE_CARD_SUCCESS payload:', action.payload);
+      return {
+        ...state,
+        errorMessage: "",
+        updatingCard: false,
+        cards: action.payload
+      }
+    case UPDATE_CARD_FAILURE:
+      console.log('reducer UPDATE_CARD_FAILURE payload:', action.payload);
+      return {
+        ...state,
+        updatingCard: false,
+        errorMessage: action.payload
+      }  
 
     default:
       return state;

@@ -20,7 +20,7 @@ class CardForm extends React.Component {
             category: "",
             description: "",
             link: "",
-            user_id: this.props.user,
+            user_id: this.props.user_id,
             created: new Date()
         }
     };
@@ -39,7 +39,7 @@ class CardForm extends React.Component {
     handleAddCard = e => {
         e.preventDefault();
         console.log('about to call addCard with:', this.state.newCard, ' user:', this.props.user);
-        this.props.addCard(this.state.newCard, this.props.user);
+        this.props.addCard(this.state.newCard, this.props.user_id);
         this.props.getCards(this.props.user)
     }
 
