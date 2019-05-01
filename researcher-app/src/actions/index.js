@@ -37,6 +37,10 @@ export const ADD_CATEGORY_START = "ADD_CATEGORY_START";
 export const ADD_CATEGORY_SUCCESS = "ADD_CATEGORY_SUCCESS";
 export const ADD_CATEGORY_FAILURE = "ADD_CATEGORY_FAILURE";
 
+export const UPDATE_CARD_START = "UPDATE_CARD_START";
+export const UPDATE_CARD_SUCCESS = "UPDATE_CARD_SUCCESS";
+export const UPDATE_CARD_FAILURE = "UPDATE_CARD_FAILURE";
+
 export const RESET_ERROR_MESSAGES = 'RESET_ERROR_MESSAGES';
 
 
@@ -156,4 +160,27 @@ export const deleteCard = card_id => dispatch => {
     });
 };
 
+export const updateCard = card_id => dispatch => {
+  dispatch({
+    type: UPDATE_CARD_START
+  })
+  axios
+     .put(`http://localhost:5000/cards/${card_id}`, {
+        headers: { Authorization: localStorage.getItem("token") }
+    })
+     .then(res => {
+      console.log("Card updated");
+      console.log(res);
+      dispatch({
+        type: UPDATE_CARD_SUCCESS,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      dispatch({
+        type: UPDATE_CARD_FAILURE,
+        payload: err
+      })
+    });
+};
 

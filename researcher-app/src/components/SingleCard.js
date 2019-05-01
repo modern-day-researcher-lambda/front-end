@@ -1,7 +1,8 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { deleteCard, updateCard } from '../actions';
+import { deleteCard } from '../actions';
 import SingleCardWrapper from './SingleCardWrapper';
 
 
@@ -15,14 +16,6 @@ const SingleCard = (props) => {
         props.deleteCard(id);
     };
 
-  const handleUpdateCard = (e) => {
-    e.preventDefault();
-
-    const { id } = props.card;
-    props.updateCard(id);
-  }
-  
-
     return (
 	    <SingleCardWrapper>
         	<p>Title: {props.card.title}</p>
@@ -32,7 +25,7 @@ const SingleCard = (props) => {
             <p>Complete? {props.card.completed}</p>
             <form>
             	<button onClick={handleDeleteCard}>Delete</button>
-              <button onClick={handleUpdateCard}>Edit</button>
+              <Link to={`cards/${props.card.id}`}>Update</Link>
             </form>
 
 	    </SingleCardWrapper>
@@ -43,5 +36,5 @@ const SingleCard = (props) => {
 
 export default connect(
   null,
-  { deleteCard, updateCard }
+  { deleteCard }
 )(SingleCard);
