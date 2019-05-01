@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Welcome from "./components/Welcome";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import PrivateRoute from "./components/PrivateRoute";
+//import PrivateRoute from "./components/PrivateRoute";
 import Cards from './components/Cards';
 import CardForm from './components/CardForm';
 import UpdateCardForm from "./components/UpdateCardForm";
@@ -20,9 +20,9 @@ function App(props) {
         <Route path="/welcome" component={ Welcome } />
         <Route path="/login" component={ Login } />
         <Route path="/register" component={ Register } />
-        <PrivateRoute exact path="/cards" component={ Cards } />
-        <PrivateRoute exact path="/cardform"  history={props.history} component={ CardForm } />
-        <PrivateRoute exact path="/cards/:id" component={ UpdateCardForm }/>
+        <Route exact path="/cards" component={ Cards } />
+        <Route exact path="/cardform"  component={ CardForm } />
+        <Route exact path="/cards/:id" component={ UpdateCardForm }/>
       </AppWrapper>
     </Router>
   );

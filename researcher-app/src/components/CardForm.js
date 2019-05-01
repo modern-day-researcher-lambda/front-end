@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addCard, getCards } from '../actions/';
-// import { stat } from 'fs';
+import { addCard } from '../actions/';
 
 
 
@@ -38,9 +37,8 @@ class CardForm extends React.Component {
 
     handleAddCard = e => {
         e.preventDefault();
-        console.log('about to call addCard with:', this.state.newCard, ' user:', this.props.user);
         this.props.addCard(this.state.newCard, this.props.user_id);
-        this.props.getCards(this.props.user)
+        this.props.history.push('/cards');
     }
 
 
@@ -51,25 +49,25 @@ class CardForm extends React.Component {
                 <input
                     onChange={this.handleChange}
                     placeholder="Title"
-                    value={this.state.title}
+                    value={this.state.newCard.title}
                     name="title"
                 />
                 <input
                     onChange={this.handleChange}
                     placeholder="Category"
-                    value={this.state.category}
+                    value={this.state.newCard.category}
                     name="category"
                 />
                 <input
                     onChange={this.handleChange}
                     placeholder="description"
-                    value={this.state.description}
+                    value={this.state.newCard.description}
                     name="description"
                 />
                 <input
                     onChange={this.handleChange}
                     placeholder="link"
-                    value={this.state.link}
+                    value={this.state.newCard.link}
                     name="link"
                 />
                 <button type="submit">Add</button>
@@ -80,4 +78,4 @@ class CardForm extends React.Component {
 }
 
 
-export default connect(mapStateToProps, { addCard, getCards })(CardForm);
+export default connect(mapStateToProps, { addCard })(CardForm);
