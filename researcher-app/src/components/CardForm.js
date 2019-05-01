@@ -7,7 +7,7 @@ import { addCard, getCards } from '../actions/';
 
 
 const mapStateToProps = state => ({
-    user: state.user
+    user_id: state.user_id
 });
 
 

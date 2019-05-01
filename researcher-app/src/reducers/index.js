@@ -21,17 +21,17 @@ import {
     UPDATE_CARDS_START,
     UPDATE_CARDS_SUCCESS,
     UPDATE_CARDS_FAILURE,
-
+*/
     DELETE_CARD_START,
     DELETE_CARD_SUCCESS,
     DELETE_CARD_FAILURE,
-*/
 
 } from "../actions";
 
 const initialState = {
   cards: [],
   user: '',
+  user_id: null,
   isLoggingIn: false,
   loginError: null,
   isRegistering: false,
@@ -71,7 +71,8 @@ const reducer = (state = initialState, action) => {
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.username,
+        user_id: action.payload.id,
         isLoggingIn: false
       };
     }
@@ -145,6 +146,28 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         addingCard: false,
+        errorMessage: action.payload
+      }
+
+    case DELETE_CARD_START:
+      return {
+        ...state,
+        errorMessage: "",
+        deletingCard: true
+      };
+    case DELETE_CARD_SUCCESS:
+      console.log('reducer DELETE_CARD_SUCCESS payload:', action.payload);
+      return {
+        ...state,
+        errorMessage: "",
+        deletingCard: false,
+        cards: state.cards.filter(card => card.id !== action.payload)
+      }
+    case DELETE_CARD_FAILURE:
+      console.log('reducer DELETE_CARD_FAILURE payload:', action.payload);
+      return {
+        ...state,
+        deletingCard: false,
         errorMessage: action.payload
       }
 

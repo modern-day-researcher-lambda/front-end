@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 
 import AppWrapper from "./AppWrapper";
 import Header from "./components/Header";
@@ -11,7 +11,7 @@ import Cards from './components/Cards';
 import CardForm from './components/CardForm';
 
 
-function App() {
+function App(props) {
   return (
     <Router>
       <AppWrapper>
@@ -20,10 +20,11 @@ function App() {
         <Route path="/login" component={ Login } />
         <Route path="/register" component={ Register } />
         <PrivateRoute exact path="/cards" component={ Cards } />
-        <PrivateRoute exact path="/cardform" component={ CardForm } />
+        <PrivateRoute exact path="/cardform"  history={props.history} component={ CardForm } />
       </AppWrapper>
     </Router>
   );
 }
 
 export default App;
+ 
