@@ -169,6 +169,7 @@ const reducer = (state = initialState, action) => {
         deletingCard: false,
         errorMessage: action.payload
       }
+
       case UPDATE_CARD_START:
       return {
         ...state,
@@ -181,7 +182,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         errorMessage: "",
         updatingCard: false,
-        cards: action.payload
+        cards: state.cards.map(card => card.id === action.payload.id ? action.payload : card)
       }
     case UPDATE_CARD_FAILURE:
       console.log('reducer UPDATE_CARD_FAILURE payload:', action.payload);

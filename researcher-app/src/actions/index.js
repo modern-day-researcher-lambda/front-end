@@ -160,12 +160,12 @@ export const deleteCard = card_id => dispatch => {
     });
 };
 
-export const updateCard = card_id => dispatch => {
+export const updateCard = card => dispatch => {
   dispatch({
     type: UPDATE_CARD_START
-  })
+  });
   axios
-     .put(`http://localhost:5000/cards/${card_id}`, {
+     .put(`http://localhost:5000/cards/${card.id}`, card, {
         headers: { Authorization: localStorage.getItem("token") }
     })
      .then(res => {
@@ -173,7 +173,7 @@ export const updateCard = card_id => dispatch => {
       console.log(res);
       dispatch({
         type: UPDATE_CARD_SUCCESS,
-        payload: res.data
+        payload: card
       })
     })
     .catch(err => {
