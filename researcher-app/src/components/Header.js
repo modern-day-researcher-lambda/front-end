@@ -4,21 +4,26 @@ import { connect } from "react-redux";
 
 import HeaderWrapper from './HeaderWrapper';
 import HeaderSpacer from './HeaderSpacer';
+import { logout } from '../actions'
 
 
 
 const mapStateToProps = state => ({
 	user: state.user,
+	user_id: state.user_id,
 	loggedIn: state.loggedIn
 });
 
-const logout = () => {
-	
-	this.$axios.setToken(false);
-}
-
 
 function Header(props) {
+
+	const handleLogout = (e) => {
+		e.preventDefault();
+	
+		props.logout(props.user_id, props.history)
+		
+	}
+
 	return (
 		<div>
 			<HeaderWrapper height='80px'>
@@ -29,7 +34,7 @@ function Header(props) {
 				  ? <>
 				  		<Link to="/cards">Cards</Link>
 				    	<Link to="/CardForm">Add Card</Link>
-						<Link onClick={ logout }to="/welcome">Logout</Link>
+						<Link onClick={ handleLogout }to="/welcome">Logout</Link>
 					</>
 				  : 
 					<>
@@ -47,5 +52,5 @@ function Header(props) {
 
 export default connect(
   mapStateToProps,
-  { }
+  { logout }
 )(Header);

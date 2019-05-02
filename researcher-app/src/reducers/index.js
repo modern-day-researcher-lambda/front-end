@@ -5,6 +5,11 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
 
+    LOGOUT_START,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAILURE,
+
+
     REGISTER_START,
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
@@ -84,6 +89,29 @@ const reducer = (state = initialState, action) => {
         ...state,
         loginError: action.payload,
         loggedIn: false,
+        isLoggingIn: false
+      };
+    }
+    case LOGOUT_START: {
+      return {
+        ...state,
+        loginError: "",
+        isLoggingOut: true
+      };
+    }
+    case LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        user: action.payload,
+        user_id: action.payload,
+        loggedIn: false,
+        isLoggingOut: false
+      };
+    }
+    case LOGOUT_FAILURE: {
+      return {
+        ...state,
+        loginError: action.payload,
         isLoggingIn: false
       };
     }

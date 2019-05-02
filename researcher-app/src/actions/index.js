@@ -9,6 +9,10 @@ export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
+export const LOGOUT_START = "LOGOUT_START";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
+
 export const FETCH_CARDS_START = "FETCH_CARDS_START";
 export const FETCH_CARDS_SUCCESS = "FETCH_CARDS_SUCCESS";
 export const FETCH_CARDS_FAILURE = "FETCH_CARDS_FAILURE";
@@ -67,6 +71,27 @@ export const login = (creds, history) => dispatch => {
         localStorage.removeItem("token");
       }
       dispatch({ type: LOGIN_FAILURE, payload: err.response.data.message });
+    });
+};
+
+export const logout = (user_id, history) => dispatch => {
+  dispatch({ type: LOGOUT_START });
+
+  return axios
+    
+    .get(`http://localhost:5000/cards/users/${user_id}`, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(res => {
+      console.log('results from axios logout post:');
+      console.log(res);
+      localStorage.removeItem("token");
+      dispatch({ type: LOGOUT_SUCCESS });
+      history.push('/welcome');
+    })
+    .catch(err => {
+      console.log("login err: ", err);
+      dispatch({ type: LOGOUT_FAILURE, payload: err.response });
     });
 };
 
