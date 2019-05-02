@@ -66,7 +66,7 @@ class UpdateCardForm extends React.Component {
         console.log('inside handleUpdateCard');
         console.log(this.state.updatedCard);
     
-        this.props.updateCard(this.state.updatedCard);
+        this.props.updateCard(this.state.updatedCard, this.props.history);
       }
 
 

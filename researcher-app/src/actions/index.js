@@ -112,7 +112,7 @@ export const getCards = (user_id) => dispatch => {
 };
 
 
-export const addCard = (card, user_id) => dispatch => {
+export const addCard = (card, history) => dispatch => {
   console.log('entering addCard');
   dispatch({ type: ADD_CARD_START });
   axios
@@ -125,6 +125,7 @@ export const addCard = (card, user_id) => dispatch => {
         type: ADD_CARD_SUCCESS,
         payload: res.data
       });
+      history.push('/cards');
     })
     .catch(err => {
       console.log('action addCard err:', err);
@@ -160,7 +161,7 @@ export const deleteCard = card_id => dispatch => {
     });
 };
 
-export const updateCard = card => dispatch => {
+export const updateCard = (card, history) => dispatch => {
   dispatch({
     type: UPDATE_CARD_START
   });
@@ -175,6 +176,7 @@ export const updateCard = card => dispatch => {
         type: UPDATE_CARD_SUCCESS,
         payload: card
       })
+      history.push('/cards');
     })
     .catch(err => {
       dispatch({
