@@ -50,13 +50,15 @@ const reducer = (state = initialState, action) => {
         ...state,
         loginError: '',
         isLoggingIn: false,
+        isLoggingOut: false,
         registerError: '',
         isRegistering: false,
         errorMessage: '',
         fetchingCards: false,
         addingCard: false,
         updatingCard: false,
-        deletingCard: false
+        deletingCard: false,
+        loggedIn: false
       };
     }
 
@@ -64,7 +66,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loginError: "",
-        isLoggingIn: true
+        isLoggingIn: true,
+        loggedIn: false
       };
     }
     case LOGIN_SUCCESS: {
@@ -72,13 +75,15 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: action.payload.username,
         user_id: action.payload.id,
-        isLoggingIn: false
+        isLoggingIn: false,
+        loggedIn: true
       };
     }
     case LOGIN_FAILURE: {
       return {
         ...state,
         loginError: action.payload,
+        loggedIn: false,
         isLoggingIn: false
       };
     }
@@ -190,8 +195,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         updatingCard: false,
         errorMessage: action.payload
-      }  
-
+      }
     default:
       return state;
   }

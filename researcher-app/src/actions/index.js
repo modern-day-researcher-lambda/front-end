@@ -44,7 +44,6 @@ export const UPDATE_CARD_FAILURE = "UPDATE_CARD_FAILURE";
 export const RESET_ERROR_MESSAGES = 'RESET_ERROR_MESSAGES';
 
 
-
 export const resetErrors = () => dispatch => {
   dispatch({ type: RESET_ERROR_MESSAGES});
 }
@@ -185,4 +184,3 @@ export const updateCard = (card, history) => dispatch => {
       })
     });
 };
-

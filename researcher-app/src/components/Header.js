@@ -6,9 +6,16 @@ import HeaderWrapper from './HeaderWrapper';
 import HeaderSpacer from './HeaderSpacer';
 
 
+
 const mapStateToProps = state => ({
-	user: state.user
+	user: state.user,
+	loggedIn: state.loggedIn
 });
+
+const logout = () => {
+	
+	this.$axios.setToken(false);
+}
 
 
 function Header(props) {
@@ -16,10 +23,21 @@ function Header(props) {
 		<div>
 			<HeaderWrapper height='80px'>
 				{props.user && <p>Welcome, {props.user}</p>}
-				<Link to="/cards">Cards</Link>
-				<Link to="CardForm">Add Card</Link>
-				<Link to="/login">Login</Link>
-				<Link to="/register">Register</Link>
+				
+				
+				{ props.loggedIn  
+				  ? <>
+				  		<Link to="/cards">Cards</Link>
+				    	<Link to="/CardForm">Add Card</Link>
+						<Link onClick={ logout }to="/welcome">Logout</Link>
+					</>
+				  : 
+					<>
+						<Link to="/register">Register</Link>
+						<Link to="/login">Login</Link>
+				    </>
+				}
+				
 			</HeaderWrapper>
 			<HeaderSpacer height='80px' />
 		</div>
