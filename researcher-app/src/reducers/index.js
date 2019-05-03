@@ -5,6 +5,11 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
 
+    LOGOUT_START,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAILURE,
+
+
     REGISTER_START,
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
@@ -50,13 +55,15 @@ const reducer = (state = initialState, action) => {
         ...state,
         loginError: '',
         isLoggingIn: false,
+        isLoggingOut: false,
         registerError: '',
         isRegistering: false,
         errorMessage: '',
         fetchingCards: false,
         addingCard: false,
         updatingCard: false,
-        deletingCard: false
+        deletingCard: false,
+        loggedIn: false
       };
     }
 
@@ -64,7 +71,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loginError: "",
-        isLoggingIn: true
+        isLoggingIn: true,
+        loggedIn: false
       };
     }
     case LOGIN_SUCCESS: {
@@ -72,10 +80,35 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: action.payload.username,
         user_id: action.payload.id,
-        isLoggingIn: false
+        isLoggingIn: false,
+        loggedIn: true
       };
     }
     case LOGIN_FAILURE: {
+      return {
+        ...state,
+        loginError: action.payload,
+        loggedIn: false,
+        isLoggingIn: false
+      };
+    }
+    case LOGOUT_START: {
+      return {
+        ...state,
+        loginError: "",
+        isLoggingOut: true
+      };
+    }
+    case LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        user: action.payload,
+        user_id: action.payload,
+        loggedIn: false,
+        isLoggingOut: false
+      };
+    }
+    case LOGOUT_FAILURE: {
       return {
         ...state,
         loginError: action.payload,
@@ -190,8 +223,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         updatingCard: false,
         errorMessage: action.payload
-      }  
-
+      }
     default:
       return state;
   }
