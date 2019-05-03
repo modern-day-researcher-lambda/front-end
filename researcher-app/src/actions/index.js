@@ -63,7 +63,7 @@ export const login = (creds, history) => dispatch => {
       console.log(res);
       localStorage.setItem("token", res.data.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.user[0] });
-      history.push('/cards');
+      history.push('/');
     })
     .catch(err => {
       console.log("login err: ", err);
@@ -87,7 +87,7 @@ export const logout = (user_id, history) => dispatch => {
       console.log(res);
       localStorage.removeItem("token");
       dispatch({ type: LOGOUT_SUCCESS });
-      history.push('/welcome');
+      history.push('/');
     })
     .catch(err => {
       console.log("login err: ", err);

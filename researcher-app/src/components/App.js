@@ -15,7 +15,7 @@ function App(props) {
     <Router>
       <AppWrapper>
         <Route path="/" component={ Header } />
-        <Route path="/" component={ Landing } />
+        <Route exact path="/" component={ Landing } />
         <Route path="/login" component={ Login } />
         <Route path="/register" component={ Register } />
         <Route exact path="/cardform"  component={ CardForm } />

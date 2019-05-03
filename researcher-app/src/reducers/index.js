@@ -73,8 +73,7 @@ const reducer = (state = initialState, action) => {
         fetchingCards: false,
         addingCard: false,
         updatingCard: false,
-        deletingCard: false,
-        loggedIn: false
+        deletingCard: false
       };
     }
 
