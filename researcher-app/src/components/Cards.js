@@ -7,6 +7,7 @@ import SingleCard from './SingleCard';
 
 const mapStateToProps = state => ({
 	cards: state.cards,
+    categories: state.categories,
     user_id: state.user_id
 });
 
@@ -18,6 +19,9 @@ class Cards extends React.Component {
     }
 
     render() {
+        console.log('in Cards');
+        console.log(this.props.categories);
+
         return (
             <div>
                 <ul className='card-list'>
