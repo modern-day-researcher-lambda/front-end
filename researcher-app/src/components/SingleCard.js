@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { deleteCard } from '../actions';
-import SingleCardWrapper from './SingleCardWrapper';
+import SingleCardWrapper from '../styled-components/SingleCardWrapper';
 
 
 const SingleCard = (props) => {

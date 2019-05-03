@@ -9,7 +9,6 @@ const HeaderSpacer = styled.div`
 	width: 100%;
 	
 	height: 60px;
-	${props => props.height && `height: ${props.height};`}
 
 `;
 

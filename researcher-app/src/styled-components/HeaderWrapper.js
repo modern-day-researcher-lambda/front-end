@@ -13,7 +13,6 @@ const HeaderWrapper = styled.div`
 	z-index: 2;
 
 	height: 60px;
-	${props => props.height && `height: ${props.height};`}
 
 	display: flex;
 	flex-direction: row;

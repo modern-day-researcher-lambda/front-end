@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { register } from "../actions";
-import RegisterWrapper from './RegisterWrapper';
+import RegisterWrapper from '../styled-components/RegisterWrapper';
 
 
 class Register extends React.Component {

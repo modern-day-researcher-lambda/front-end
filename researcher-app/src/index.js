@@ -7,7 +7,7 @@ import logger from 'redux-logger';
 
 import './reset.css';
 import './index.css';
-import App from './App';
+import App from './components/App';
 import rootReducer from './reducers';
 
 

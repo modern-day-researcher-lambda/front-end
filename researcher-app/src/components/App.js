@@ -1,15 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import AppWrapper from "./AppWrapper";
-import Header from "./components/Header";
-import Welcome from "./components/Welcome";
-import Login from "./components/Login";
-import Register from "./components/Register";
-//import PrivateRoute from "./components/PrivateRoute";
-import Cards from './components/Cards';
-import CardForm from './components/CardForm';
-import UpdateCardForm from "./components/UpdateCardForm";
+import AppWrapper from "../styled-components/AppWrapper";
+import Header from "./Header";
+import Welcome from "./Welcome";
+import Login from "./Login";
+import Register from "./Register";
+import Cards from './Cards';
+import CardForm from './CardForm';
+import UpdateCardForm from "./UpdateCardForm";
 
 
 function App(props) {

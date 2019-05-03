@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import HeaderWrapper from './HeaderWrapper';
-import HeaderSpacer from './HeaderSpacer';
+import HeaderWrapper from '../styled-components/HeaderWrapper';
+import HeaderSpacer from '../styled-components/HeaderSpacer';
 import { logout } from '../actions'
 
 
@@ -26,7 +26,7 @@ function Header(props) {
 
 	return (
 		<div>
-			<HeaderWrapper height='80px'>
+			<HeaderWrapper>
 				{props.user && <p>Welcome, {props.user}</p>}
 				
 				
@@ -44,7 +44,7 @@ function Header(props) {
 				}
 				
 			</HeaderWrapper>
-			<HeaderSpacer height='80px' />
+			<HeaderSpacer/>
 		</div>
 	);
 }

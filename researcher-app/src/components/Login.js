@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { login } from "../actions";
-import LoginWrapper from './LoginWrapper';
+import LoginWrapper from '../styled-components/LoginWrapper';
 
 
 class Login extends React.Component {
