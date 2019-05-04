@@ -39,10 +39,16 @@ export const UPDATE_CARD_FAILURE = "UPDATE_CARD_FAILURE";
 
 export const RESET_ERROR_MESSAGES = 'RESET_ERROR_MESSAGES';
 export const LOGOUT = "LOGOUT";
+export const UPDATE_CATEGORY = "UPDATE_CATEGORY";
 
 
 export const resetErrors = () => dispatch => {
   dispatch({ type: RESET_ERROR_MESSAGES});
+}
+
+
+export const updateCategory = (new_cat) => dispatch => {
+  dispatch({ type: UPDATE_CATEGORY, payload: new_cat });
 }
 
 

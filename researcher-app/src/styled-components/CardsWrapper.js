@@ -41,6 +41,7 @@ const CardsWrapper = styled.div`
 			color: white;
 			background-color: dodgerblue;
 			border: none;
+			cursor: pointer;
 		}
 
 		button.selected-cat {
