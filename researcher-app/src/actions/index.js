@@ -66,10 +66,12 @@ export const login = (creds, history) => dispatch => {
     })
     .catch(err => {
       console.log("login err: ", err);
+      /*
       if (err.response && err.response.status === 401) {
         localStorage.removeItem("token");
         dispatch({ type: LOGOUT });
       }
+      */
       dispatch({ type: LOGIN_FAILURE, payload: err.response.data.message });
     });
 };
@@ -113,12 +115,14 @@ export const getCards = (user_id) => dispatch => {
       });
     })
     .catch(err => {
-      console.log('action getCards err.response:', err.response);
+      console.log('action getCards err.response:', err);
+      /*
       if (err.response.status === 401) {
         localStorage.removeItem("token");
         dispatch({ type: LOGOUT });
       }
-      dispatch({ type: FETCH_CARDS_FAILURE, payload: err.response.data.message });
+      */
+      dispatch({ type: FETCH_CARDS_FAILURE, payload: err });
     });
 };
 
@@ -140,10 +144,12 @@ export const addCard = (card, history) => dispatch => {
     })
     .catch(err => {
       console.log('action addCard err:', err);
+      /*
       if (err.response.status === 401) {
         localStorage.removeItem("token");
         dispatch({ type: LOGOUT });
       }
+      */
       dispatch({ type: ADD_CARD_FAILURE, payload: err });
     });
 };

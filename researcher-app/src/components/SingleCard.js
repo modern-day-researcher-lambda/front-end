@@ -30,8 +30,8 @@ const SingleCard = (props) => {
             <p className='link'>Link: <a href={'https://' + props.card.link}>{props.card.link}</a></p>
             <p className='desc-label'>Description:</p>
             <p className='desc-text'>{props.card.description}</p>
-            <p className='time'>Created: {props.card.created}</p>
-            <p className='time'>Last updated: {props.card.updated}</p>
+            <p className='time'>Created: {props.card.created && props.card.created.toString()}</p>
+            <p className='time'>Last updated: {props.card.updated && props.card.updated.toString()}</p>
             <form>
             	<button className='delete' onClick={handleDeleteCard}>Delete</button>
                 <button className='update' onClick={handleUpdateCard}>Update</button>
