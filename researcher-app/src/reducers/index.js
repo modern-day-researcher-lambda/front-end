@@ -110,7 +110,9 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: '',
         user_id: null,
-        loggedIn: false
+        loggedIn: false,
+        cards: [],
+        categories: []
       };
     }
 
