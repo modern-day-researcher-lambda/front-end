@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { register } from "../actions";
-import RegisterWrapper from './RegisterWrapper';
+import RegisterWrapper from '../styled-components/RegisterWrapper';
 
 
 class Register extends React.Component {
@@ -34,7 +34,10 @@ class Register extends React.Component {
     return (
       <RegisterWrapper>
   
-        {this.props.registerError && <p>{this.props.registerError}</p>}
+        {this.props.registerError && <p className='error'>{this.props.registerError}</p>}
+        {this.props.infoMessage && <p>{this.props.infoMessage}</p>}
+
+        <p>Please enter a User Name and Password:</p>
 
         <form onSubmit={this.handleRegister}>
 
@@ -45,6 +48,7 @@ class Register extends React.Component {
               name="username"
               value={this.state.credentials.username}
               onChange={this.handleChange}
+              autoFocus={true}
             />
           </div>
 

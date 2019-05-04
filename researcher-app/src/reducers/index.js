@@ -5,10 +5,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
 
-    LOGOUT_START,
-    LOGOUT_SUCCESS,
-    LOGOUT_FAILURE,
-
+    LOGOUT,
 
     REGISTER_START,
     REGISTER_SUCCESS,
@@ -30,12 +27,18 @@ import {
     DELETE_CARD_SUCCESS,
     DELETE_CARD_FAILURE,
 
+    UPDATE_CATEGORY
+
 } from "../actions";
+
 
 const initialState = {
   cards: [],
+  categories: [],
+  selected_cat: '',
   user: '',
   user_id: null,
+  loggedIn: false,
   isLoggingIn: false,
   loginError: null,
   isRegistering: false,
@@ -44,12 +47,30 @@ const initialState = {
   addingCard: false,
   updatingCard: false,
   deletingCard: false,
-  errorMessage: null
+  errorMessage: null,
+  infoMessage: null
+};
+
+
+// generate category list from the cards list
+// get category list -> convert to set -> convert back to list -> sort
+const getCategories = (cards) => {
+  return Array.from(new Set(cards.map(card => card.category))).sort();
 };
 
 
 const reducer = (state = initialState, action) => {
+  let newCards = null;
+
   switch (action.type) {
+    case UPDATE_CATEGORY: {
+      return {
+        ...state,
+        selected_cat: action.payload
+      };
+    }
+
+
     case RESET_ERROR_MESSAGES: {
       return {
         ...state,
@@ -63,7 +84,7 @@ const reducer = (state = initialState, action) => {
         addingCard: false,
         updatingCard: false,
         deletingCard: false,
-        loggedIn: false
+        infoMessage: ''
       };
     }
 
@@ -89,30 +110,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         loginError: action.payload,
         loggedIn: false,
-        isLoggingIn: false
+        isLoggingIn: false,
+        user: '',
+        user_id: null
       };
     }
-    case LOGOUT_START: {
+
+    case LOGOUT: {
       return {
         ...state,
-        loginError: "",
-        isLoggingOut: true
-      };
-    }
-    case LOGOUT_SUCCESS: {
-      return {
-        ...state,
-        user: action.payload,
-        user_id: action.payload,
+        user: '',
+        user_id: null,
         loggedIn: false,
-        isLoggingOut: false
-      };
-    }
-    case LOGOUT_FAILURE: {
-      return {
-        ...state,
-        loginError: action.payload,
-        isLoggingIn: false
+        cards: [],
+        categories: [],
+        selected_cat: ''
       };
     }
 
@@ -126,7 +138,8 @@ const reducer = (state = initialState, action) => {
     case REGISTER_SUCCESS: {
       return {
         ...state,
-        isRegistering: false
+        isRegistering: false,
+        infoMessage: 'Registration Successfull!  You can now log in'
       };
     }
     case REGISTER_FAILURE: {
@@ -150,7 +163,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         errorMessage: "",
         fetchingCards: false,
-        cards: action.payload
+        cards: action.payload,
+        categories: getCategories(action.payload)
       };
     case FETCH_CARDS_FAILURE:
       return {
@@ -171,7 +185,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         errorMessage: "",
         addingCard: false,
-        cards: action.payload
+        cards: action.payload,
+        categories: getCategories(action.payload)
       }
     case ADD_CARD_FAILURE:
       console.log('reducer ADD_CARD_FAILURE payload:', action.payload);
@@ -189,11 +204,13 @@ const reducer = (state = initialState, action) => {
       };
     case DELETE_CARD_SUCCESS:
       console.log('reducer DELETE_CARD_SUCCESS payload:', action.payload);
+      newCards = state.cards.filter(card => card.id !== action.payload);
       return {
         ...state,
         errorMessage: "",
         deletingCard: false,
-        cards: state.cards.filter(card => card.id !== action.payload)
+        cards: newCards,
+        categories: getCategories(newCards)
       }
     case DELETE_CARD_FAILURE:
       console.log('reducer DELETE_CARD_FAILURE payload:', action.payload);
@@ -211,11 +228,13 @@ const reducer = (state = initialState, action) => {
       };
     case UPDATE_CARD_SUCCESS:
       console.log('reducer UPDATE_CARD_SUCCESS payload:', action.payload);
+      newCards = state.cards.map(card => card.id === action.payload.id ? action.payload : card);
       return {
         ...state,
         errorMessage: "",
         updatingCard: false,
-        cards: state.cards.map(card => card.id === action.payload.id ? action.payload : card)
+        cards: newCards,
+        categories: getCategories(newCards)
       }
     case UPDATE_CARD_FAILURE:
       console.log('reducer UPDATE_CARD_FAILURE payload:', action.payload);

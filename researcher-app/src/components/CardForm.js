@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 
 import { addCard } from '../actions/';
 
+import CardFormWrapper from '../styled-components/CardFormWrapper';
 
 
 const mapStateToProps = state => ({
+    loggedIn: state.loggedIn,
     user_id: state.user_id
 });
 
@@ -19,8 +21,8 @@ class CardForm extends React.Component {
             category: "",
             description: "",
             link: "",
-            user_id: this.props.user_id,
-            created: new Date()
+            completed: false,
+            user_id: this.props.user_id
         }
     };
 
@@ -35,46 +37,93 @@ class CardForm extends React.Component {
     };
 
 
+    handleCheck = e => {
+        this.setState({
+            newCard: {
+                ...this.state.newCard,
+                [e.target.name]: e.target.checked
+            }
+        });
+    };
+
+
     handleAddCard = e => {
         e.preventDefault();
-        this.props.addCard(this.state.newCard, this.props.history);
+        const cdate = new Date();
+
+        this.props.addCard({...this.state.newCard, created: cdate, updated: cdate}, this.props.history);
     }
 
 
     render() {
-        return (
-            <div className='card-form'>
-                <form onSubmit={this.handleAddCard}>
-                <input
-                    onChange={this.handleChange}
-                    placeholder="Title"
-                    value={this.state.newCard.title}
-                    name="title"
-                />
-                <input
-                    onChange={this.handleChange}
-                    placeholder="Category"
-                    value={this.state.newCard.category}
-                    name="category"
-                />
-                <input
-                    onChange={this.handleChange}
-                    placeholder="description"
-                    value={this.state.newCard.description}
-                    name="description"
-                />
-                <input
-                    onChange={this.handleChange}
-                    placeholder="link"
-                    value={this.state.newCard.link}
-                    name="link"
-                />
-                <button type="submit">Add</button>
-                </form>
-            </div>
-        );
+
+        if (this.props.loggedIn) {
+            return (
+                <CardFormWrapper>
+                    <form onSubmit={this.handleAddCard} >
+                        <div>
+                            <label name='title'>Title:</label>
+                            <input
+                                type="text"
+                                name="title"
+                                value={this.state.newCard.title}
+                                onChange={this.handleChange}
+                                autoFocus={true}
+                            />
+                        </div>
+
+                        <div>
+                            <label name='category'>Category:</label>
+                            <input
+                                type="text"
+                                name="category"
+                                value={this.state.newCard.category}
+                                onChange={this.handleChange}
+                            />
+                        </div>
+
+                        <div className='checkbox'>
+                            <label name='completed'>Completed?</label>
+                            <input
+                                type="checkbox"
+                                name="completed"
+                                value={this.state.newCard.completed}
+                                onChange={this.handleCheck}
+                            />
+                        </div>
+
+                        <div>
+                            <label name='link'>Link:</label>
+                            <input
+                                type="text"
+                                name="link"
+                                value={this.state.newCard.link}
+                                onChange={this.handleChange}
+                            />
+                        </div>
+
+                        <div>
+                            <label name='description'>Description:</label>
+                            <textarea
+                                name="description"
+                                onChange={this.handleChange}
+                                value={this.state.newCard.description}
+                            />
+                        </div>
+
+                        <button type="submit">Add</button>
+                    </form>
+                </CardFormWrapper>
+            );
+        }
+        else {
+            this.props.history.push('/')
+            return (
+                <div> </div>
+            )}
     }
 }
 
 
 export default connect(mapStateToProps, { addCard })(CardForm);
+

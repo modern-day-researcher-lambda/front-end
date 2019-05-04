@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from "react-redux";
 
 import { resetErrors } from "../actions";
-import WelcomeWrapper from './WelcomeWrapper';
+import WelcomeWrapper from '../styled-components/WelcomeWrapper';
 
 
 const Welcome = (props) => {
 
-	// reset any pending error messages
+	// reset any pending error states
 	props.resetErrors();
 
     return (

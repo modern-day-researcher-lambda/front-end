@@ -1,13 +1,11 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { deleteCard } from '../actions';
-import SingleCardWrapper from './SingleCardWrapper';
+import SingleCardWrapper from '../styled-components/SingleCardWrapper';
 
 
 const SingleCard = (props) => {
-
 
 	const handleDeleteCard = (e) => {
 		e.preventDefault();
@@ -16,18 +14,28 @@ const SingleCard = (props) => {
         props.deleteCard(id);
     };
 
+    const handleUpdateCard = (e) => {
+        e.preventDefault();
+
+        const { id } = props.card;
+        props.history.push(`/cards/${id}`);
+    };
+
+
     return (
 	    <SingleCardWrapper>
-        	  <p>Title: {props.card.title}</p>
-            <p>Category: {props.card.category}</p>
-            <p>Description: {props.card.description}</p>
-            <p>Link: {props.card.link}</p>
-            <p>Complete? {props.card.completed}</p>
+        	<p className='title'>{props.card.title}</p>
+            <p className='category'>Category: {props.card.category}</p>
+            <p className='complete'>Complete? <span>{props.card.completed ? 'Yes' : 'No'}</span></p>
+            <p className='link'>Link: <a href={'https://' + props.card.link}>{props.card.link}</a></p>
+            <p className='desc-label'>Description:</p>
+            <p className='desc-text'>{props.card.description}</p>
+            <p className='time'>Created: {props.card.created && props.card.created.toString()}</p>
+            <p className='time'>Last updated: {props.card.updated && props.card.updated.toString()}</p>
             <form>
-            	<button onClick={handleDeleteCard}>Delete</button>
-              <Link to={`cards/${props.card.id}`}>Update</Link>
+            	<button className='delete' onClick={handleDeleteCard}>Delete</button>
+                <button className='update' onClick={handleUpdateCard}>Update</button>
             </form>
-
 	    </SingleCardWrapper>
     );
 };
