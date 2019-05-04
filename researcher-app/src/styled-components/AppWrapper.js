@@ -4,14 +4,13 @@ import styled from "styled-components";
 
 const AppWrapper = styled.div`
 
-  margin: 20px auto;
-  width: 100%;
-  max-width: 800px;
+	
+	margin: 20px;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 
 `;
 

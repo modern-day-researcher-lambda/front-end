@@ -19,7 +19,7 @@ const HeaderWrapper = styled.div`
 
 
 	.header-content {
-		max-width: 1000px;
+		max-width: 1024px;
 		width: 100%;
 
 		display: flex;
@@ -61,7 +61,7 @@ const HeaderWrapper = styled.div`
 
 	.greet {
 		font-size: 1.8rem;
-		padding: 10px 20px;
+		padding: 10px;
 	}
 
 

@@ -39,6 +39,7 @@ const RegisterWrapper = styled.div`
 				width: 240px;
 				height: 30px;
 				margin: 10px;
+				font-size: 1.6rem;
 			}
 
 		}
