@@ -31,7 +31,6 @@ function Header(props) {
 					<div className='left'>
 						{ props.loggedIn
 						  ? <>
-
 								<div className='greet'>Welcome, {props.user}</div>
 						    	<Link to="/CardForm">Add Card</Link>
 							</>
