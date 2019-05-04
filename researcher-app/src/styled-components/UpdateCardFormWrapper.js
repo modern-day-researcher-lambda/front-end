@@ -56,7 +56,7 @@ const UpdateCardFormWrapper = styled.div`
 
 		button {
 			font-size: 1.8rem;
-			width: 60px;
+			width: 80px;
 			height: 30px;
 			margin: 10px;
 		}
