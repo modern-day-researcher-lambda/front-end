@@ -6,12 +6,10 @@ const CardsWrapper = styled.div`
 
 	width: 100vw;
 	max-width: 1024px;
-	border: 1px solid black;
 	display: flex;
 
 
 	.card-container {
-		border: 1px solid red;
 
 		width: 100%;
 
@@ -22,7 +20,6 @@ const CardsWrapper = styled.div`
 
 
 	.categories {
-		border: 1px solid green;
 		width: 15%;
 		display: flex;
 		flex-direction: column;
@@ -46,7 +43,6 @@ const CardsWrapper = styled.div`
 	}
 
 	.cards {
-		border: 1px solid blue;
 		width: 84%;
 		display: flex;
 		flex-direction: row;
