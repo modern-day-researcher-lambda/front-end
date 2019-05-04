@@ -50,6 +50,7 @@ class CardForm extends React.Component {
                     placeholder="Title"
                     value={this.state.newCard.title}
                     name="title"
+                    autoFocus={true}
                 />
                 <input
                     onChange={this.handleChange}

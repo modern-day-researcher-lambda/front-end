@@ -48,6 +48,7 @@ class Login extends React.Component {
               name="username"
               value={this.state.credentials.username}
               onChange={this.handleChange}
+              autoFocus={true}
             />
           </div>
 

@@ -99,7 +99,9 @@ const reducer = (state = initialState, action) => {
         ...state,
         loginError: action.payload,
         loggedIn: false,
-        isLoggingIn: false
+        isLoggingIn: false,
+        user: '',
+        user_id: null
       };
     }
 
