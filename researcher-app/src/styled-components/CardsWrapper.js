@@ -21,9 +21,11 @@ const CardsWrapper = styled.div`
 
 	.categories {
 		width: 15%;
+		height: 100vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		border-right: 1px solid #CCC;
 
 		p {
 			font-size: 1.8rem;
@@ -48,8 +50,9 @@ const CardsWrapper = styled.div`
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-around;
-		align-content: center;
-		align-items: center;
+		align-items: flex-start;
+		align-content: flex-start;
+		
 
 	}
 
