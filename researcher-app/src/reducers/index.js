@@ -33,6 +33,7 @@ import {
 const initialState = {
   cards: [],
   categories: [],
+  selected_cat: '',
   user: '',
   user_id: null,
   loggedIn: false,

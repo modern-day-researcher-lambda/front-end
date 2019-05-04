@@ -19,8 +19,8 @@ class CardForm extends React.Component {
             category: "",
             description: "",
             link: "",
-            user_id: this.props.user_id,
-            created: new Date()
+            completed: false,
+            user_id: this.props.user_id
         }
     };
 
@@ -37,7 +37,8 @@ class CardForm extends React.Component {
 
     handleAddCard = e => {
         e.preventDefault();
-        this.props.addCard(this.state.newCard, this.props.history);
+        const cdate = new Date();
+        this.props.addCard({...this.state.newCard, created: cdate, updated: cdate}, this.props.history);
     }
 
 

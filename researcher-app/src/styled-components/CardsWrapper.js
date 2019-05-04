@@ -5,7 +5,7 @@ import styled from "styled-components";
 const CardsWrapper = styled.div`
 
 	width: 100vw;
-	max-width: 1024px;
+	max-width: 1200px;
 	display: flex;
 
 
@@ -20,7 +20,8 @@ const CardsWrapper = styled.div`
 
 
 	.categories {
-		width: 15%;
+		width: 19%;
+		min-width: 160px;
 		height: 100vh;
 		display: flex;
 		flex-direction: column;
@@ -42,10 +43,14 @@ const CardsWrapper = styled.div`
 			border: none;
 		}
 
+		button.selected-cat {
+			background-color: grey;
+		}
+
 	}
 
 	.cards {
-		width: 84%;
+		width: 80%;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
