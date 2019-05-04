@@ -6,7 +6,6 @@ import Header from "./components/Header";
 import Welcome from "./components/Welcome";
 import Login from "./components/Login";
 import Register from "./components/Register";
-//import PrivateRoute from "./components/PrivateRoute";
 import Cards from './components/Cards';
 import CardForm from './components/CardForm';
 import UpdateCardForm from "./components/UpdateCardForm";
