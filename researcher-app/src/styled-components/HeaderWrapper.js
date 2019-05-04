@@ -13,32 +13,58 @@ const HeaderWrapper = styled.div`
 	z-index: 2;
 
 	height: 80px;
-
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
 
-	.logged-in {
+
+	.header-content {
+		max-width: 1000px;
+		width: 100%;
+
 		display: flex;
 		flex-direction: row;
-		justify-content: space-around;
+		justify-content: space-between;
 		align-items: center;
-
-		.greet {
-			border: 1px solid black;
-			font-size: 1.8rem;
-			padding: 10px 20px;
-		}
 	}
 
 
-	.logged-out {
+	.left {
+		width: 34%;
+		font-size: 1.8rem;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.right {
+		width: 34%;
+
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
 		align-items: center;
-		margin: 0 50px;
 	}
+
+	.center {
+		width: 30%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+
+		font-size: 3rem;
+
+	}
+
+	.greet {
+		font-size: 1.8rem;
+		padding: 10px 20px;
+	}
+
+
 
 
 	a {
@@ -55,7 +81,7 @@ const HeaderWrapper = styled.div`
 		text-decoration: none;
 		cursor: pointer;
 
-		margin: 0 20px;
+		margin: 0 10px;
 	}
 
 `;
