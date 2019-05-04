@@ -77,7 +77,7 @@ export const login = (creds, history) => dispatch => {
 };
 
 
-export const logout = (user_id, history) => dispatch => {
+export const logout = (history) => dispatch => {
   localStorage.removeItem("token");
   dispatch({ type: LOGOUT });
   history.push('/');
