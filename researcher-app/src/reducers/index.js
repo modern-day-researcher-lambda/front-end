@@ -5,9 +5,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
 
-    LOGOUT_START,
-    LOGOUT_SUCCESS,
-    LOGOUT_FAILURE,
+    LOGOUT,
 
     REGISTER_START,
     REGISTER_SUCCESS,
@@ -46,7 +44,8 @@ const initialState = {
   addingCard: false,
   updatingCard: false,
   deletingCard: false,
-  errorMessage: null
+  errorMessage: null,
+  infoMessage: null
 };
 
 
@@ -73,7 +72,8 @@ const reducer = (state = initialState, action) => {
         fetchingCards: false,
         addingCard: false,
         updatingCard: false,
-        deletingCard: false
+        deletingCard: false,
+        infoMessage: ''
       };
     }
 
@@ -102,27 +102,13 @@ const reducer = (state = initialState, action) => {
         isLoggingIn: false
       };
     }
-    case LOGOUT_START: {
+
+    case LOGOUT: {
       return {
         ...state,
-        loginError: "",
-        isLoggingOut: true
-      };
-    }
-    case LOGOUT_SUCCESS: {
-      return {
-        ...state,
-        user: action.payload,
-        user_id: action.payload,
-        loggedIn: false,
-        isLoggingOut: false
-      };
-    }
-    case LOGOUT_FAILURE: {
-      return {
-        ...state,
-        loginError: action.payload,
-        isLoggingIn: false
+        user: '',
+        user_id: null,
+        loggedIn: false
       };
     }
 
@@ -136,7 +122,8 @@ const reducer = (state = initialState, action) => {
     case REGISTER_SUCCESS: {
       return {
         ...state,
-        isRegistering: false
+        isRegistering: false,
+        infoMessage: 'Registration Successfull!  You can now log in'
       };
     }
     case REGISTER_FAILURE: {

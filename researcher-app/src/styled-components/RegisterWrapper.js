@@ -5,10 +5,13 @@ import styled from "styled-components";
 const RegisterWrapper = styled.div`
 
 	p {
-		color: red;
 		font-size: 2rem;
-
 	}
+
+	.error {
+		color: red;
+	}
+
 
 	form {
 		margin-top: 20px;

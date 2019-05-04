@@ -34,7 +34,10 @@ class Login extends React.Component {
     return (
       <LoginWrapper>
 
-        {this.props.loginError && <p>{this.props.loginError}</p>}
+        {this.props.loginError && <p className='error'>{this.props.loginError}</p>}
+        {this.props.infoMessage && <p>{this.props.infoMessage}</p>}
+
+        <p>Please enter your User Name and Password:</p>
 
         <form onSubmit={this.handleLogin}>
 
@@ -76,7 +79,8 @@ class Login extends React.Component {
 const mapStateToProps = state => {
   return {
     isLoggingIn: state.isLoggingIn,
-    loginError: state.loginError
+    loginError: state.loginError,
+    infoMessage: state.infoMessage
   };
 };
 

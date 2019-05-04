@@ -12,16 +12,34 @@ const HeaderWrapper = styled.div`
 	left: 0;
 	z-index: 2;
 
-	height: 60px;
+	height: 80px;
 
 	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-around;
+	flex-direction: column;
+	justify-content: center;
 
-	p {
-		font-size: 1.6rem;
+	.logged-in {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+
+		.greet {
+			border: 1px solid black;
+			font-size: 1.8rem;
+			padding: 10px 20px;
+		}
 	}
+
+
+	.logged-out {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+		margin: 0 50px;
+	}
+
 
 	a {
 		height: 40px;
@@ -36,6 +54,8 @@ const HeaderWrapper = styled.div`
 		font-size: 1.6rem;
 		text-decoration: none;
 		cursor: pointer;
+
+		margin: 0 20px;
 	}
 
 `;

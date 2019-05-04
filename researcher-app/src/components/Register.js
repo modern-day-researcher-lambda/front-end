@@ -34,7 +34,10 @@ class Register extends React.Component {
     return (
       <RegisterWrapper>
   
-        {this.props.registerError && <p>{this.props.registerError}</p>}
+        {this.props.registerError && <p className='error'>{this.props.registerError}</p>}
+        {this.props.infoMessage && <p>{this.props.infoMessage}</p>}
+
+        <p>Please enter a User Name and Password:</p>
 
         <form onSubmit={this.handleRegister}>
 

@@ -27,20 +27,23 @@ function Header(props) {
 	return (
 		<div>
 			<HeaderWrapper>
-				{props.user && <p>Welcome, {props.user}</p>}
 				
-				
-				{ props.loggedIn  
-				  ? <>
-				  		<Link to="/cards">Cards</Link>
-				    	<Link to="/CardForm">Add Card</Link>
-						<Link onClick={ handleLogout }to="/welcome">Logout</Link>
-					</>
+				{ props.loggedIn
+				  ? (
+				  		<div className='logged-in'>
+							<div className='greet'>Welcome, {props.user}</div>
+
+				    		<Link to="/CardForm">Add Card</Link>
+							<Link onClick={ handleLogout }to="/">Logout</Link>
+						</div>
+					)
 				  : 
-					<>
-						<Link to="/register">Register</Link>
-						<Link to="/login">Login</Link>
-				    </>
+				  	(
+						<div className='logged-out'>
+							<Link to="/register">Register</Link>
+							<Link to="/login">Login</Link>
+				    	</div>
+				    )
 				}
 				
 			</HeaderWrapper>
