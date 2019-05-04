@@ -1,5 +1,4 @@
 import axios from "axios";
-//import history from "../components/history"
 
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -77,7 +76,7 @@ export const login = (creds, history) => dispatch => {
 };
 
 
-export const logout = (user_id, history) => dispatch => {
+export const logout = (history) => dispatch => {
   localStorage.removeItem("token");
   dispatch({ type: LOGOUT });
   history.push('/');

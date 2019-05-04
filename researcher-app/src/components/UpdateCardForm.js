@@ -63,6 +63,11 @@ class UpdateCardForm extends React.Component {
 
     };
 
+    handleCancel = () => {
+        const oldCard = this.cards.find(card => card.id === this.id);
+        if (oldCard) this.setState({updatedCard: oldCard})
+    }
+
 
     handleUpdateCard = (e) => {
         e.preventDefault();
@@ -133,6 +138,7 @@ class UpdateCardForm extends React.Component {
                         </div>
 
                         <button type="submit">Update</button>
+                        <button onClick={ this.handleCancel } >Cancel</button>
                     </form>
                 </UpdateCardFormWrapper>
             );

@@ -20,7 +20,7 @@ function Header(props) {
 	const handleLogout = (e) => {
 		e.preventDefault();
 	
-		props.logout(props.user_id, props.history)
+		props.logout(props.history)
 		
 	}
 
