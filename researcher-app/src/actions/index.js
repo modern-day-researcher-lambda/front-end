@@ -9,10 +9,6 @@ export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
-export const LOGOUT_START = "LOGOUT_START";
-export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
-export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
-
 export const FETCH_CARDS_START = "FETCH_CARDS_START";
 export const FETCH_CARDS_SUCCESS = "FETCH_CARDS_SUCCESS";
 export const FETCH_CARDS_FAILURE = "FETCH_CARDS_FAILURE";
@@ -29,10 +25,6 @@ export const DELETE_CARD_START = "DELETE_CARD_START";
 export const DELETE_CARD_SUCCESS = "DELETE_CARD_SUCCESS";
 export const DELETE_CARD_FAILURE = "DELETE_CARD_FAILURE";
 
-export const TOGGLE_CARD_START = "TOGGLE_CARD_START";
-export const TOGGLE_CARD_SUCCESS = "TOGGLE_CARD_SUCCESS";
-export const TOGGLE_CARD_FAILURE = "TOGGLE_CARD_FAILURE";
-
 export const FETCH_CATEGORY_START = "FETCH_CATEGORY_START";
 export const FETCH_CATEGORY_SUCCESS = "FETCH_CATEGORY_SUCCESS";
 export const FETCH_CATEGORY_FAILURE = "FETCH_CATEGORY_FAILURE";
@@ -46,6 +38,7 @@ export const UPDATE_CARD_SUCCESS = "UPDATE_CARD_SUCCESS";
 export const UPDATE_CARD_FAILURE = "UPDATE_CARD_FAILURE";
 
 export const RESET_ERROR_MESSAGES = 'RESET_ERROR_MESSAGES';
+export const LOGOUT = "LOGOUT";
 
 
 export const resetErrors = () => dispatch => {
@@ -63,36 +56,23 @@ export const login = (creds, history) => dispatch => {
       console.log(res);
       localStorage.setItem("token", res.data.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.user[0] });
-      history.push('/cards');
+      history.push('/');
     })
     .catch(err => {
       console.log("login err: ", err);
       if (err.response && err.response.status === 401) {
         localStorage.removeItem("token");
+        dispatch({ type: LOGOUT });
       }
       dispatch({ type: LOGIN_FAILURE, payload: err.response.data.message });
     });
 };
 
-export const logout = (user_id, history) => dispatch => {
-  dispatch({ type: LOGOUT_START });
 
-  return axios
-    
-    .get(`http://localhost:5000/cards/users/${user_id}`, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
-    .then(res => {
-      console.log('results from axios logout post:');
-      console.log(res);
-      localStorage.removeItem("token");
-      dispatch({ type: LOGOUT_SUCCESS });
-      history.push('/welcome');
-    })
-    .catch(err => {
-      console.log("login err: ", err);
-      dispatch({ type: LOGOUT_FAILURE, payload: err.response });
-    });
+export const logout = (user_id, history) => dispatch => {
+  localStorage.removeItem("token");
+  dispatch({ type: LOGOUT });
+  history.push('/');
 };
 
 
@@ -130,6 +110,7 @@ export const getCards = (user_id) => dispatch => {
       console.log('action getCards err.response:', err.response);
       if (err.response.status === 401) {
         localStorage.removeItem("token");
+        dispatch({ type: LOGOUT });
       }
       dispatch({ type: FETCH_CARDS_FAILURE, payload: err.response.data.message });
     });
@@ -149,12 +130,13 @@ export const addCard = (card, history) => dispatch => {
         type: ADD_CARD_SUCCESS,
         payload: res.data
       });
-      history.push('/cards');
+      history.push('/');
     })
     .catch(err => {
       console.log('action addCard err:', err);
       if (err.response.status === 401) {
         localStorage.removeItem("token");
+        dispatch({ type: LOGOUT });
       }
       dispatch({ type: ADD_CARD_FAILURE, payload: err });
     });
@@ -164,7 +146,7 @@ export const addCard = (card, history) => dispatch => {
 export const deleteCard = card_id => dispatch => {
   dispatch({
     type: DELETE_CARD_START
-  })
+  });
   axios
      .delete(`http://localhost:5000/cards/${card_id}`, {
         headers: { Authorization: localStorage.getItem("token") }
@@ -175,7 +157,7 @@ export const deleteCard = card_id => dispatch => {
       dispatch({
         type: DELETE_CARD_SUCCESS,
         payload: card_id
-      })
+      });
     })
     .catch(err => {
       dispatch({
@@ -199,8 +181,8 @@ export const updateCard = (card, history) => dispatch => {
       dispatch({
         type: UPDATE_CARD_SUCCESS,
         payload: card
-      })
-      history.push('/cards');
+      });
+      history.push('/');
     })
     .catch(err => {
       dispatch({

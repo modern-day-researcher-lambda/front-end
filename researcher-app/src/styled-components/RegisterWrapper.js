@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
-// Login form wrapper styles
+// Register form wrapper styles
 
-const LoginWrapper = styled.div`
+const RegisterWrapper = styled.div`
 
 	p {
-		color: red;
 		font-size: 2rem;
-
 	}
+
+	.error {
+		color: red;
+	}
+
 
 	form {
 		margin-top: 20px;
@@ -36,6 +39,7 @@ const LoginWrapper = styled.div`
 				width: 240px;
 				height: 30px;
 				margin: 10px;
+				font-size: 1.6rem;
 			}
 
 		}
@@ -50,4 +54,4 @@ const LoginWrapper = styled.div`
 `;
 
 
-export default LoginWrapper;
+export default RegisterWrapper;

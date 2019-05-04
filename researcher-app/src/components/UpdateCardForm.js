@@ -80,6 +80,7 @@ class UpdateCardForm extends React.Component {
                     placeholder="Title"
                     value={this.state.updatedCard.title}
                     name="title"
+                    autoFocus={true}
                 />
                 <input
                     onChange={this.handleChange}

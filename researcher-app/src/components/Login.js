@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { login } from "../actions";
-import LoginWrapper from './LoginWrapper';
+import LoginWrapper from '../styled-components/LoginWrapper';
 
 
 class Login extends React.Component {
@@ -34,7 +34,10 @@ class Login extends React.Component {
     return (
       <LoginWrapper>
 
-        {this.props.loginError && <p>{this.props.loginError}</p>}
+        {this.props.loginError && <p className='error'>{this.props.loginError}</p>}
+        {this.props.infoMessage && <p>{this.props.infoMessage}</p>}
+
+        <p>Please enter your User Name and Password:</p>
 
         <form onSubmit={this.handleLogin}>
 
@@ -45,6 +48,7 @@ class Login extends React.Component {
               name="username"
               value={this.state.credentials.username}
               onChange={this.handleChange}
+              autoFocus={true}
             />
           </div>
 
@@ -76,7 +80,8 @@ class Login extends React.Component {
 const mapStateToProps = state => {
   return {
     isLoggingIn: state.isLoggingIn,
-    loginError: state.loginError
+    loginError: state.loginError,
+    infoMessage: state.infoMessage
   };
 };
 
