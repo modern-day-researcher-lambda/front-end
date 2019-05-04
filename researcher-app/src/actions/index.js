@@ -1,5 +1,4 @@
 import axios from "axios";
-//import history from "../components/history"
 
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
