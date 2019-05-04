@@ -54,6 +54,10 @@ class CardForm extends React.Component {
         this.props.addCard({...this.state.newCard, created: cdate, updated: cdate}, this.props.history);
     }
 
+    handleCancel = () => {
+        this.props.history.push('/');
+    }
+
 
     render() {
 
@@ -112,6 +116,7 @@ class CardForm extends React.Component {
                         </div>
 
                         <button type="submit">Add</button>
+                        <button onClick={ this.handleCancel }>Cancel</button>
                     </form>
                 </CardFormWrapper>
             );
