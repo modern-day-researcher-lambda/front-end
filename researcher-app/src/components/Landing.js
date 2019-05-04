@@ -14,7 +14,7 @@ function Landing(props) {
 
 	return (
 		<div>
-			{ props.loggedIn ? <Cards /> : <Welcome /> }
+			{ props.loggedIn ? <Cards {...props} /> : <Welcome /> }
 		</div>
 	);
 }

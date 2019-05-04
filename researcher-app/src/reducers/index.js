@@ -27,12 +27,15 @@ import {
     DELETE_CARD_SUCCESS,
     DELETE_CARD_FAILURE,
 
+    UPDATE_CATEGORY
+
 } from "../actions";
 
 
 const initialState = {
   cards: [],
   categories: [],
+  selected_cat: '',
   user: '',
   user_id: null,
   loggedIn: false,
@@ -60,6 +63,14 @@ const reducer = (state = initialState, action) => {
   let newCards = null;
 
   switch (action.type) {
+    case UPDATE_CATEGORY: {
+      return {
+        ...state,
+        selected_cat: action.payload
+      };
+    }
+
+
     case RESET_ERROR_MESSAGES: {
       return {
         ...state,
@@ -112,7 +123,8 @@ const reducer = (state = initialState, action) => {
         user_id: null,
         loggedIn: false,
         cards: [],
-        categories: []
+        categories: [],
+        selected_cat: ''
       };
     }
 

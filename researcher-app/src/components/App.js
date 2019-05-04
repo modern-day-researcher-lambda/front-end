@@ -18,7 +18,7 @@ function App(props) {
         <Route exact path="/" component={ Landing } />
         <Route path="/login" component={ Login } />
         <Route path="/register" component={ Register } />
-        <Route exact path="/cardform"  component={ CardForm } />
+        <Route exact path="/cardform" component={ CardForm } />
         <Route exact path="/cards/:id" component={ UpdateCardForm }/>
       </AppWrapper>
     </Router>
