@@ -18,7 +18,7 @@ const SingleCard = (props) => {
 
     return (
 	    <SingleCardWrapper>
-        	  <p>Title: {props.card.title}</p>
+        	<p>Title: {props.card.title}</p>
             <p>Category: {props.card.category}</p>
             <p>Description: {props.card.description}</p>
             <p>Link: {props.card.link}</p>
@@ -27,7 +27,6 @@ const SingleCard = (props) => {
             	<button onClick={handleDeleteCard}>Delete</button>
               <Link to={`cards/${props.card.id}`}>Update</Link>
             </form>
-
 	    </SingleCardWrapper>
     );
 };
