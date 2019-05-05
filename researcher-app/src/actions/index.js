@@ -55,7 +55,7 @@ export const login = (creds, history) => dispatch => {
   dispatch({ type: LOGIN_START });
 
   return axios
-    .post("http://localhost:5000/users/login", creds)
+    .post("https://moderndayresearcher.herokuapp.com/users/login", creds)
     .then(res => {
       console.log('results from axios login post:');
       console.log(res);
@@ -87,7 +87,7 @@ export const register = (creds, history) => dispatch => {
   dispatch({ type: REGISTER_START });
 
   return axios
-    .post("http://localhost:5000/users/register", creds)
+    .post("https://moderndayresearcher.herokuapp.com/users/register", creds)
     .then(res => {
       localStorage.setItem("token", res.data.token);
       dispatch({ type: REGISTER_SUCCESS });
@@ -103,7 +103,7 @@ export const register = (creds, history) => dispatch => {
 export const getCards = (user_id) => dispatch => {
   dispatch({ type: FETCH_CARDS_START });
   axios
-    .get(`http://localhost:5000/cards/users/${user_id}`, {
+    .get(`https://moderndayresearcher.herokuapp.com/cards/users/${user_id}`, {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
@@ -130,7 +130,7 @@ export const addCard = (card, history) => dispatch => {
   console.log('entering addCard');
   dispatch({ type: ADD_CARD_START });
   axios
-    .post('http://localhost:5000/cards/users/', card, {
+    .post('https://moderndayresearcher.herokuapp.com/cards/users/', card, {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
@@ -159,7 +159,7 @@ export const deleteCard = card_id => dispatch => {
     type: DELETE_CARD_START
   });
   axios
-     .delete(`http://localhost:5000/cards/${card_id}`, {
+     .delete(`https://moderndayresearcher.herokuapp.com/cards/${card_id}`, {
         headers: { Authorization: localStorage.getItem("token") }
     })
      .then(res => {
@@ -183,7 +183,7 @@ export const updateCard = (card, history) => dispatch => {
     type: UPDATE_CARD_START
   });
   axios
-     .put(`http://localhost:5000/cards/${card.id}`, card, {
+     .put(`https://moderndayresearcher.herokuapp.com/cards/${card.id}`, card, {
         headers: { Authorization: localStorage.getItem("token") }
     })
      .then(res => {
