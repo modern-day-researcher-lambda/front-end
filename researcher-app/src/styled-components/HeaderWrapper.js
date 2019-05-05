@@ -113,6 +113,30 @@ const HeaderWrapper = styled.div `
 		border-right: 1px solid #DCA67B;
 	}
 
+
+	//media query for mobile
+	@media only screen and (max-width: 700px){
+		.left > a {
+			padding-left: 20px;
+		}
+		.center {
+			font-size: 24px;
+		}
+	}
+
+	
+	@media only screen and (max-width: 525px) {
+		.left > a  {
+			padding: 5px;
+		}
+
+		.center {
+			font-size: 23px;
+		
+		}
+
+	  }
+
 `;
 
 
