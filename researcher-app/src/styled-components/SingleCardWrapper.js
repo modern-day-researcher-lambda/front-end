@@ -12,6 +12,9 @@ const SingleCardWrapper = styled.div`
 	padding: 0 10px;
 	font-family: 'Montserrat', sans-serif;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.17);
+
+	background-color: beige;
+
 	.title {
 		width: 107%;
 		margin-left: -10px;    // <-- compensates for padding on conatiner
