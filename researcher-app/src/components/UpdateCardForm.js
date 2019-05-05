@@ -86,6 +86,9 @@ class UpdateCardForm extends React.Component {
         if (this.props.loggedIn) {
             return (
                 <UpdateCardFormWrapper>
+                    <div className="header-container">
+                        <h1>Update Card</h1>
+                    </div>
                     <form onSubmit={this.handleUpdateCard} >
                         <div>
                             <label name='title'>Title:</label>
@@ -136,9 +139,10 @@ class UpdateCardForm extends React.Component {
                                 value={this.state.updatedCard.description}
                             />
                         </div>
-
-                        <button type="submit">Update</button>
-                        <button onClick={ this.handleCancel } >Cancel</button>
+                        <div className="button-container">
+                            <button type="submit">Update</button>
+                            <button onClick={ this.handleCancel } >Cancel</button>
+                        </div>
                     </form>
                 </UpdateCardFormWrapper>
             );
