@@ -8,9 +8,15 @@ const RegisterWrapper = styled.div`
 
 	p {
 		font-size: 2rem;
+		background-color: beige;
+		padding: 20px;
+		border-radius: 5px;
 	}
 	.error {
 		color: red;
+		background-color: beige;
+		padding: 20px;
+		border-radius: 5px;
 	}
 	form {
         background: #dca67b; /* Old browsers */
