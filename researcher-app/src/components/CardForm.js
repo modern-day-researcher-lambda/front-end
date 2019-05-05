@@ -64,7 +64,11 @@ class CardForm extends React.Component {
         if (this.props.loggedIn) {
             return (
                 <CardFormWrapper>
+                    <div className="header-container">
+                        <h1>Add a New Card</h1>
+                    </div>
                     <form onSubmit={this.handleAddCard} >
+                        
                         <div>
                             <label name='title'>Title:</label>
                             <input
@@ -114,9 +118,10 @@ class CardForm extends React.Component {
                                 value={this.state.newCard.description}
                             />
                         </div>
-
-                        <button type="submit">Add</button>
-                        <button onClick={ this.handleCancel }>Cancel</button>
+                        <div className="button-container">
+                            <button type="submit">Add</button>
+                            <button onClick={ this.handleCancel }>Cancel</button>
+                        </div>
                     </form>
                 </CardFormWrapper>
             );
@@ -131,4 +136,3 @@ class CardForm extends React.Component {
 
 
 export default connect(mapStateToProps, { addCard })(CardForm);
-
