@@ -51,6 +51,7 @@ const HeaderWrapper = styled.div `
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
+		text-align: center;
 		font-size: 3rem;
 	}
 
@@ -67,6 +68,7 @@ const HeaderWrapper = styled.div `
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		text-align: center;
 		
 		font-size: 1.6rem;
 		font-family: 'Caudex', serif;
@@ -94,6 +96,7 @@ const HeaderWrapper = styled.div `
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		text-align: center;
 		
 		font-size: 1.6rem;
 		font-family: 'Caudex', serif;
