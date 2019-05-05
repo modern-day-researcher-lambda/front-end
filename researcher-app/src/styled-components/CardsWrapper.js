@@ -6,6 +6,7 @@ const CardsWrapper = styled.div`
 	width: 100vw;
 	max-width: 1100px;
 	display: flex;
+
 		.card-container {
 			width: 100%;
 			display: flex;
@@ -17,27 +18,32 @@ const CardsWrapper = styled.div`
 					align-items: flex-start;
 				}
 		}
+
 		.categories {
 			background-color: beige;
 
 			display: flex;
 			flex-flow: column wrap;
 			align-items: center;
+			width: 250px;
 			padding: 20px;
 			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.17);
 				@media(min-width: 600px) { margin-top: 20px; }
+			
 			p {
 				font-size: 1.8rem;
 				margin: 5px 0;
 				font-family: 'Prata', serif;
 				padding: 6px 20px 6px 20px;
 			}
+
 			button {
 				width: 90%;
 				height: 30px;
 				margin: 5px 0;
 				font-size: 1.6rem;
 				color: white;
+				word-wrap: normal;
 				background-color: #DCA67B;
 				border: none;
 				cursor: pointer;
