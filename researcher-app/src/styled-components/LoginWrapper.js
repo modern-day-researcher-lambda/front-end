@@ -8,9 +8,15 @@ const LoginWrapper = styled.div`
 
 	p {
 		font-size: 2rem;
+		background-color: beige;
+		padding: 20px;
+		border-radius: 5px;
 	}
 	.error {
+		background-color: beige;
 		color: red;
+		padding: 20px;
+		border-radius: 5px;
 	}
 	form {
         background: #dca67b; /* Old browsers */

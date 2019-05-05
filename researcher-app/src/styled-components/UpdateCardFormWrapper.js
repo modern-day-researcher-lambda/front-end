@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 const UpdateCardFormWrapper = styled.div`
 
+	background-color: beige;
+
 
 	p {
 		font-size: 2rem;
@@ -15,7 +17,7 @@ const UpdateCardFormWrapper = styled.div`
 
 
 	form {
-		margin-top: 20px;
+
 		padding: 10px;
 
 		display: flex;

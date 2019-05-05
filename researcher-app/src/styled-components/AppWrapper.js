@@ -12,7 +12,7 @@ const AppWrapper = styled.div `
 	align-items: center;
 	min-height: 100vh;
 
-	background-color: #DCB;
+	//background-color: #DCB;
 	
 `;
 
