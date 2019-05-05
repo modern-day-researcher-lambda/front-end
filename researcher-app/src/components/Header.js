@@ -42,7 +42,7 @@ class Header extends React.Component {
 							  ? <>
 									<div className='show-cats'
 										onClick={ this.handleToggleCats } >
-										<span>{this.props.show_cats ? 'Hide' : 'Show'}</span> <span>Categories</span>
+										{this.props.show_cats ? 'Hide Cats' : 'Show Cats'}
 									</div>
 							    	<Link to="/CardForm">Add Card</Link>
 								</>

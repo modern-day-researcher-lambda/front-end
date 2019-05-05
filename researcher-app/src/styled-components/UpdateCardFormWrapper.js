@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const UpdateCardFormWrapper = styled.div`
 
+
 	p {
 		font-size: 2rem;
 	}

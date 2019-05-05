@@ -4,8 +4,9 @@ import styled from "styled-components";
 
 const AppWrapper = styled.div`
 
-	
-	margin: 20px;
+	height: 100vh;
+
+	background-color: #DDC;
 
 	display: flex;
 	flex-direction: column;

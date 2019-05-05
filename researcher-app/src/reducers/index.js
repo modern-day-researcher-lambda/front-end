@@ -112,7 +112,10 @@ const reducer = (state = initialState, action) => {
         user: action.payload.username,
         user_id: action.payload.id,
         isLoggingIn: false,
-        loggedIn: true
+        loggedIn: true,
+        loginError: '',
+        registerError: '',
+        infoMessage: ''
       };
     }
     case LOGIN_FAILURE: {
@@ -149,6 +152,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isRegistering: false,
+        registerError: '',
+        loginError: '',
         infoMessage: 'Registration Successfull!  You can now log in'
       };
     }
