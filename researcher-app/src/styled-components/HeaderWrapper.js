@@ -65,10 +65,28 @@ const HeaderWrapper = styled.div`
 	}
 
 
+	.show-cats {
+		height: 50px;
+		width: 100px;
+		background-color: dodgerblue;
+		color: white;
+		border: none;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		font-size: 1.6rem;
+		text-decoration: none;
+		cursor: pointer;
+
+		margin: 0 10px;
+	}
 
 
 	a {
-		height: 40px;
+		height: 50px;
 		width: 100px;
 		background-color: dodgerblue;
 		color: white;

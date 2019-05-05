@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 	cards: state.cards,
     categories: state.categories,
     user_id: state.user_id,
-    selected_cat: state.selected_cat
+    selected_cat: state.selected_cat,
+    show_cats: state.show_cats
 });
 
 
@@ -34,7 +35,7 @@ class Cards extends React.Component {
         return (
             <CardsWrapper>
                 <div className='card-container'>
-                    <div className='categories'>
+                    <div className={this.props.show_cats ? 'show categories' : 'hide categories'}>
                         <p>Categories</p>
                         <button onClick={(e) => this.handleCategoryClick(e, -1)}
                          className={this.props.selected_cat === '' ? 'selected-cat' : 'cat'}>All</button>

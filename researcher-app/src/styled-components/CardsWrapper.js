@@ -50,6 +50,14 @@ const CardsWrapper = styled.div`
 
 	}
 
+	.hide {
+		display: none;
+	}
+
+	.show {
+		
+	}
+
 	.cards {
 		width: 80%;
 		display: flex;
