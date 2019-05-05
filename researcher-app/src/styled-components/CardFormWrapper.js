@@ -3,6 +3,9 @@ import styled from "styled-components";
 // Card form wrapper styles
 
 const CardFormWrapper = styled.div`
+
+	background-color: beige;
+	
 	font-family: 'Montserrat', serif;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.17);
 	p {
