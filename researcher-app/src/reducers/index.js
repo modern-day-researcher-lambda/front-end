@@ -27,7 +27,8 @@ import {
     DELETE_CARD_SUCCESS,
     DELETE_CARD_FAILURE,
 
-    UPDATE_CATEGORY
+    UPDATE_CATEGORY,
+    TOGGLE_CATS
 
 } from "../actions";
 
@@ -48,7 +49,8 @@ const initialState = {
   updatingCard: false,
   deletingCard: false,
   errorMessage: null,
-  infoMessage: null
+  infoMessage: null,
+  show_cats: true
 };
 
 
@@ -67,6 +69,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         selected_cat: action.payload
+      };
+    }
+
+
+    case TOGGLE_CATS: {
+      return {
+        ...state,
+        show_cats: !state.show_cats
       };
     }
 
