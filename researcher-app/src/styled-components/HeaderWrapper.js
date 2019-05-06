@@ -10,7 +10,7 @@ const HeaderWrapper = styled.div `
 	top: 0;
 	left: 0;
 	z-index: 2;
-	height: 80px;
+	height: 60px;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -53,6 +53,13 @@ const HeaderWrapper = styled.div `
 		align-items: center;
 		text-align: center;
 		font-size: 3rem;
+
+		font-family: 'Sorts Mill Goudy', serif;
+
+		i {
+			margin-top: -3px;
+			margin-right: 5px;
+		}
 	}
 
 	.greet {

@@ -12,9 +12,15 @@ const Welcome = (props) => {
 
     return (
 	    <WelcomeWrapper>
-            <h1>Welcome to Research Pal!</h1>
-            <p>Click 'Login' to begin</p>
-            <p>First time user? Click 'Register' to create an account</p>
+
+        <div class="welcome-container">
+            <h1 class="welcome-header">Research Pal</h1>
+            <div class="welcome-message">
+                <p>Login to get started.</p>
+                <p>Or click register to create a new account!</p>
+            </div>
+        </div>
+
 	    </WelcomeWrapper>
     );
 };

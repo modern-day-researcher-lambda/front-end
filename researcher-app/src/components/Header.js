@@ -53,7 +53,7 @@ class Header extends React.Component {
 						</div>
 
 						<div className='center'>
-							Research Pal!
+							<i class="fas fa-book-open"></i> Research Pal
 						</div>
 						
 						<div className='right'>
