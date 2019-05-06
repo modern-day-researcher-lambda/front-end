@@ -11,9 +11,9 @@ const SingleCardWrapper = styled.div`
 	margin: 20px;
 	padding: 0 10px;
 	font-family: 'Montserrat', sans-serif;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.17);
+	box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.75);
 
-	background-color: beige;
+	background: linear-gradient(113.88deg, #f5f5dc 14.66%, #c7c7b1 83.68%);
 
 	.title {
 		width: 107%;

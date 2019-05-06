@@ -3,30 +3,50 @@ import styled from "styled-components";
 // Welcome wrapper styles
 
 const WelcomeWrapper = styled.div`
-	max-width: 800px;
-	background-color: beige;
-	
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin: 3rem;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.17);
-	font-family: 'Montserrat', serif;
-	h1 {
-		padding: 3rem;
-		margin-bottom: 5px;
-		width: 100%;
-		color: #FFFFFF;
-		font-size: 5rem;
-		text-align: center;
-		background: #DCA67B;
-	}
-	p {
-		font-size: 2rem;
-		margin: 30px;
-		text-align: center;
-	}
-`;
 
+
+	.welcome-container{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		
+		height: 500px;
+
+		background: radial-gradient(262px at 50% 50%, #000000 0%, #00000000 100%);
+
+		.welcome-header {
+			border-bottom: 3px solid white;
+
+			color: white;
+			font-size: 7.5rem;
+			font-family: 'Prata', serif;
+
+			white-space: nowrap;
+
+			@media (max-width: 500px) {
+				font-size: 5.5rem
+			}
+		}
+
+		.welcome-message {
+			text-align: center;
+
+			width: 400px;
+			margin-top: 30px;
+
+			color: white;
+			font-family: 'Caudex', serif;
+			font-size: 2.2rem;
+
+			p {
+				margin-top: 20px;
+			}
+
+			@media (max-width: 500px) {
+				font-size: 1.6rem
+			}
+		}
+`;
 
 export default WelcomeWrapper;

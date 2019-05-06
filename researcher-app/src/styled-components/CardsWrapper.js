@@ -20,14 +20,14 @@ const CardsWrapper = styled.div`
 		}
 
 		.categories {
-			background-color: beige;
+			background: linear-gradient(113.88deg, #f5f5dc 14.66%, #b6b6a0 83.68%);
 
 			display: flex;
 			flex-flow: column wrap;
 			align-items: center;
 			width: 250px;
 			padding: 20px;
-			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.17);
+			box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.75);
 				@media(min-width: 600px) { margin-top: 20px; }
 			
 			p {
