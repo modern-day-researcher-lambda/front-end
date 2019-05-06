@@ -8,6 +8,7 @@ const UpdateCardFormWrapper = styled.div`
 
 	font-family: 'Montserrat', serif;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.17);
+
 	p {
 		font-size: 2rem;
 	}
@@ -82,6 +83,29 @@ const UpdateCardFormWrapper = styled.div`
 				}
 			}
 		}
+	}
+	@media (max-width: 500px) {
+		form {
+			div {
+				label {
+					width: 120px;
+				}
+				input {
+					width: 200px;
+				}
+				textarea {
+					width: 200px;
+				}
+			}
+			.button-container {
+				width: 200px;
+	
+				button {
+					width: 90px;
+				}
+			}
+		}
+		width: 90%%;
 	}
 `;
 
